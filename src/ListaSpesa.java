@@ -5,7 +5,7 @@ public class ListaSpesa {
 	//creo la lista 'ufficiosa'
 	private static ArrayList<Articolo> lista = new ArrayList<Articolo>();
 
-	public static int dimensione(){	 
+	public int dimensione(){	 
 		return lista.size();
 	}
 	

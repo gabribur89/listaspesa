@@ -12,7 +12,6 @@ public class GestioneListe {
 	//campo cancellati che rappresenta la lista 'cestino', dei rimossi
 	private static ListaSpesa cancellati = new ListaSpesa();
 	
-	private static ArrayList<Articolo> art = new ArrayList<Articolo>();
 	
 	// 1) Creare una lista dandole un nome
 	public static void creaLista(String nomeLista){
@@ -24,19 +23,36 @@ public class GestioneListe {
 	
 	// 2) Creare una categoria
 	// sarebbe un metodo analogo a setCategoria() della classe Articolo ???
+	public static void aggiungiCategoria(String s){
+		categorie.add(s);
+	}
+	
+	// eliminazione categoria
+	public static void eliminaCategoria(String s){
+		categorie.remove(s);
+	}
+	
+	// dimensione categoria
+	public static int dimensioneCategoria(){
+		return categorie.size();
+	}
 	
 	/* 5) Inserire un articolo in una lista con una quantità 
 	(inizialmente l’articolo non è categorizzato)*/
 	public static void aggiungiArticolo(String nomeLista, int q, Articolo a){
-		art.add(a);
+		a.setQta(q);
+		if(listeSpesa.containsKey(nomeLista))
+		{
+			listeSpesa.get(nomeLista).aggiungi(a);
+		}
+		
 	}
 	
 	/* 6) Cercare un articolo fornendo il prefisso della stringa 
 	(cercare anche nella lista degli articoli rimossi).
 	La ricerca ritorna l’indice dell’articolo nella lista della spesa o in quella dei rimossi.*/
-	public static ArrayList<Articolo> cercaArticolo(String nomeRub, String prefisso){
-		return art;
-	}
+	/*public static ArrayList<Articolo> cercaArticolo(String nomeRub, String prefisso){
+	}*/
 	
 	// 7) Rimuovere un articolo da una lista (questo lo mette nella lista dei rimossi).
 	public static boolean rimuoviArticolo(String Rubrica, String prefisso){
@@ -56,6 +72,10 @@ public class GestioneListe {
 			return true;
 		}
 		return false;
+	}
+	
+	public static ListaSpesa getListaSpesa(String nomeLista){
+		return listeSpesa.get(nomeLista);
 	}
 	
 }/*
