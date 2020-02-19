@@ -1,5 +1,3 @@
-import jbook.util.Input;
-
 public class Articolo {
 	
 	protected String nome;
@@ -12,6 +10,10 @@ public class Articolo {
 		qta = a.qta;
 	}
 	
+	public Articolo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setNome(String n){
 		nome = n;
 	}
