@@ -22,16 +22,21 @@ public class MainClass {
 		System.out.println("10 - Modifica categoria di un articolo");
 		System.out.println("11 - Modifica quantita' di un articolo");
 		System.out.println("12 - Svuota lista rimossi");
+		System.out.println("13 - Stampa liste");
 		System.out.println("0 - Esci ");
 		System.out.println("\nInserisci un comando: ");
 		System.out.println("\n\n\n");
 	}
+	
+	
+	// Inizio del programma
 	public static void main(String[] args) throws SceltaSbagliata{
 		
 		int scelta = 0;
 		
 		// determina se e' gia' stato prodotto il menu o no
 		boolean esistente = false;
+		GestioneListe liste = new GestioneListe();
 
 		do{
 			MainClass.stampaMenu(esistente);
@@ -40,7 +45,7 @@ public class MainClass {
 			try { 
 				scelta=Input.readInt();
 				System.out.println(scelta);
-				if((scelta<0) || (scelta>9))
+				if((scelta<0) || (scelta>13))
 				{
 					throw new SceltaSbagliata("Devi inserire un numero tra 0 e 9!");
 				}
@@ -54,7 +59,17 @@ public class MainClass {
 			
 			switch(scelta){
 			case 1:
-					break;
+				System.out.print("Inserisci il nome della lista!");
+				String nome = Input.readString();
+				GestioneListe.creaLista(nome);
+				break;
+			case 2:
+				System.out.print("Inserisci il nome della categoria!");
+				String cat = Input.readString();
+				GestioneListe.aggiungiCategoria(cat);
+			case 13:
+				System.out.print("Stampo liste\n");
+				System.out.print(liste.toString());
 			case 0: //esci
 				System.out.println("\n ti saluto! Alla prossima! ");
 			default:

@@ -42,8 +42,8 @@ public class GestioneListe {
 	
 	// 5) Iterare sugli elementi di una lista (che devono essere mantenuti ordinati)
 	
-	/* 6) Inserire un articolo in una lista con una quantità 
-	(inizialmente l’articolo non è categorizzato)*/
+	/* 6) Inserire un articolo in una lista con una quantita 
+	(inizialmente l'articolo non e' categorizzato)*/
 	public static void aggiungiArticolo(String nomeLista, int q, Articolo a){
 		a.setQta(q);
 		if(listeSpesa.containsKey(nomeLista))
@@ -55,7 +55,7 @@ public class GestioneListe {
 	
 	/* 7) Cercare un articolo fornendo il prefisso della stringa 
 	(cercare anche nella lista degli articoli rimossi).
-	La ricerca ritorna l’indice dell’articolo nella lista della spesa o in quella dei rimossi.*/
+	La ricerca ritorna l'indice dell' articolo nella lista della spesa o in quella dei rimossi.*/
 	public int cercaArticolo(String nomeLista, String prefisso, Articolo a){
 		for(int i=0;i<listeSpesa.size();i++)
 		{
@@ -68,7 +68,8 @@ public class GestioneListe {
 	public static boolean rimuoviArticolo(String nomeLista, String prefisso){
 		if(listeSpesa.containsKey(nomeLista))
 		{
-			
+			listeSpesa.get(nomeLista).elimina(listeSpesa.get(nomeLista).cercaPerNome(prefisso));
+			return true;
 		}
 		return false;
 	}
@@ -76,7 +77,7 @@ public class GestioneListe {
 	/* 9) Ripristinare un articolo dalla lista dei rimossi (operazione contraria al
 	   metodo 8) */
 	
-	// 10) Modificare la categoria 11) modificare la quantità di un articolo
+	// 10) Modificare la categoria 11) modificare la quantita di un articolo
 	
 	// 12) Svuotare la lista degli articoli rimossi
 	
@@ -98,19 +99,16 @@ public class GestioneListe {
 	public static ListaSpesa getListaSpesa(String nomeLista){
 		return listeSpesa.get(nomeLista);
 	}
-	
-}/*
-	…………
-	}
-	public static void aggiungiElRubrica(String nomeRub, String con) throws ??? {
-	}
-	public static ArrayList<String> cercaElRubrica(String nomeRub,String prefisso) {
-	…………
-	}
-	public static boolean rimuoviElRubrica(String Rubrica,String prefisso) {
-	…………
-	}
-	public static String toStringRubrica(String Rubrica) {
-	…………
-	}*/
 
+	// metodo toString per stampare le liste  
+	public String toString() {
+		String out = new String(); 
+		for (String name: listeSpesa.keySet()){
+            out += name.toString()+"\n";
+		}
+
+		return out;
+		
+	}
+
+}
