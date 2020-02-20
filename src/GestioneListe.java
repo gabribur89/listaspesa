@@ -68,7 +68,8 @@ public class GestioneListe {
 	public static boolean rimuoviArticolo(String nomeLista, String prefisso){
 		if(listeSpesa.containsKey(nomeLista))
 		{
-			listeSpesa.get(nomeLista).elimina(listeSpesa.get(nomeLista).cercaPerNome(prefisso));
+			Articolo rimosso = listeSpesa.get(nomeLista).elimina(listeSpesa.get(nomeLista).cercaPerNome(prefisso));
+			cancellati.aggiungi(rimosso);
 			return true;
 		}
 		return false;

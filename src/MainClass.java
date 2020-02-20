@@ -33,6 +33,7 @@ public class MainClass {
 	public static void main(String[] args) throws SceltaSbagliata{
 		
 		int scelta = 0;
+		String sceltalista;
 		
 		// determina se e' gia' stato prodotto il menu o no
 		boolean esistente = false;
@@ -60,14 +61,21 @@ public class MainClass {
 			switch(scelta){
 			case 1:
 				System.out.print("Inserisci il nome della lista!");
-				String nome = Input.readString();
-				GestioneListe.creaLista(nome);
+				sceltalista = Input.readString();
+				GestioneListe.creaLista(sceltalista);
 				break;
 			case 2:
 				System.out.print("Inserisci il nome della categoria!");
 				String cat = Input.readString();
 				GestioneListe.aggiungiCategoria(cat);
-			case 13:
+			case 8:
+				System.out.print("Nome della lista\n");
+				sceltalista = Input.readString();
+				System.out.print("Prefisso dell'articolo\n");
+				String prefisso = Input.readString();
+				GestioneListe.rimuoviArticolo(sceltalista, prefisso);
+				
+			case 13:	
 				System.out.print("Stampo liste\n");
 				System.out.print(liste.toString());
 			case 0: //esci
