@@ -37,7 +37,12 @@ public class GestioneListe {
 		return categorie.size();
 	}
 	
-	/* 5) Inserire un articolo in una lista con una quantità 
+	/* 3) Leggere e 4) scrivere una lista su un file (potete scegliere se usare un file di testo 
+	oppure serializzare la classe)*/
+	
+	// 5) Iterare sugli elementi di una lista (che devono essere mantenuti ordinati)
+	
+	/* 6) Inserire un articolo in una lista con una quantità 
 	(inizialmente l’articolo non è categorizzato)*/
 	public static void aggiungiArticolo(String nomeLista, int q, Articolo a){
 		a.setQta(q);
@@ -48,16 +53,32 @@ public class GestioneListe {
 		
 	}
 	
-	/* 6) Cercare un articolo fornendo il prefisso della stringa 
+	/* 7) Cercare un articolo fornendo il prefisso della stringa 
 	(cercare anche nella lista degli articoli rimossi).
 	La ricerca ritorna l’indice dell’articolo nella lista della spesa o in quella dei rimossi.*/
-	/*public static ArrayList<Articolo> cercaArticolo(String nomeRub, String prefisso){
-	}*/
-	
-	// 7) Rimuovere un articolo da una lista (questo lo mette nella lista dei rimossi).
-	public static boolean rimuoviArticolo(String Rubrica, String prefisso){
-		return true;
+	public int cercaArticolo(String nomeLista, String prefisso, Articolo a){
+		for(int i=0;i<listeSpesa.size();i++)
+		{
+			
+		}
+		return -1; //se non ho trovato un nome, ritorno -1
 	}
+	
+	// 8) Rimuovere un articolo da una lista (questo lo mette nella lista dei rimossi).
+	public static boolean rimuoviArticolo(String nomeLista, String prefisso){
+		if(listeSpesa.containsKey(nomeLista))
+		{
+			
+		}
+		return false;
+	}
+	
+	/* 9) Ripristinare un articolo dalla lista dei rimossi (operazione contraria al
+	   metodo 8) */
+	
+	// 10) Modificare la categoria 11) modificare la quantità di un articolo
+	
+	// 12) Svuotare la lista degli articoli rimossi
 	
 	// metodo che restituisce la dimensione di una lista
 	public static int dimensioneLista(){

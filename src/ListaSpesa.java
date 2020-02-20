@@ -9,7 +9,7 @@ public class ListaSpesa {
 		return lista.size();
 	}
 	
-	public static int aggiungi(Articolo a) {
+	public int aggiungi(Articolo a) {
 		 lista.add(a);
 		 return 1;
 	}
