@@ -37,7 +37,7 @@ public class ListaSpesaTest {
 		a.setCategoria("cibo");
 		l.aggiungi(a);
 		int indice = l.cercaPerNome("riso");
-		System.out.println(indice);
+		assertTrue(indice != -1);
 	}
 	
 	
