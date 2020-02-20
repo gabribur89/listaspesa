@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import javax.swing.event.ListDataListener;
-
 public class ListaSpesa {
 
 	//creo la lista 'ufficiosa'
@@ -13,19 +11,18 @@ public class ListaSpesa {
 	
 	public int aggiungi(Articolo a) {
 		 lista.add(a);
-		 return 1;
+		 return lista.indexOf(a);
 	}
 	
 	public Articolo elimina(int i){
+		System.out.println(i);
 		return lista.remove(i);
 	}
 	
 	public int cercaPerNome(String n){
-		for(int i=0;i<lista.size();i++){
-			String nome = lista.get(i).getNome();
-						
-			if (nome.compareTo(n) == 0){
-				return i; //restituisco indice se ho trovato il nome
+		for(Articolo art: lista){
+			if (art.getNome().contains(n)){
+				return lista.indexOf(art); //restituisco indice se ho trovato il nome
 			}
 		}
 		return -1; //se non ho trovato un nome, ritorno -1

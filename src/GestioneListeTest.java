@@ -22,11 +22,31 @@ public class GestioneListeTest {
 	
 	@Test
 	public void testAggiungiArticolo(){
+		GestioneListe.ripulisci();
 		Articolo a = new Articolo();
 		GestioneListe.creaLista("lista a");
 		GestioneListe.aggiungiArticolo("lista a", 10, a);
-		// ho una listaspesa 
 		assertTrue(GestioneListe.dimensioneLista()==1);
 		assertTrue(GestioneListe.getListaSpesa("lista a").dimensione()==1);
+
 	}
+	
+	@Test
+	public void testRimuoviArticolo(){
+		GestioneListe.ripulisci();
+		Articolo a = new Articolo();
+		a.setNome("foobar");
+		GestioneListe.creaLista("lista a");
+		assertTrue(GestioneListe.dimensioneLista()==1);
+
+		GestioneListe.aggiungiArticolo("lista a", 10, a);
+		System.out.println(GestioneListe.getListaSpesa("lista a").dimensione());
+		assertTrue(GestioneListe.getListaSpesa("lista a").dimensione() == 1); 
+		
+		GestioneListe.rimuoviArticolo("lista a", "foo");
+		System.out.println(GestioneListe.getListaSpesa("lista a").dimensione());
+		assertTrue(GestioneListe.getListaSpesa("lista a").dimensione() == 0);
+
+	}
+	
 }

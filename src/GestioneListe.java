@@ -68,7 +68,11 @@ public class GestioneListe {
 	public static boolean rimuoviArticolo(String nomeLista, String prefisso){
 		if(listeSpesa.containsKey(nomeLista))
 		{
-			Articolo rimosso = listeSpesa.get(nomeLista).elimina(listeSpesa.get(nomeLista).cercaPerNome(prefisso));
+			int indice = listeSpesa.get(nomeLista).cercaPerNome(prefisso);
+			if (indice == -1)
+				return false;
+			
+			Articolo rimosso = listeSpesa.get(nomeLista).elimina(indice);
 			cancellati.aggiungi(rimosso);
 			return true;
 		}
@@ -85,6 +89,10 @@ public class GestioneListe {
 	// metodo che restituisce la dimensione di una lista
 	public static int dimensioneLista(){
 		return listeSpesa.size();
+	}
+	
+	public static void ripulisci() {
+		listeSpesa.clear();
 	}
 	
 	// metodo che cancella una lista 
