@@ -31,4 +31,14 @@ public class ListaSpesa {
 	public void svuota(){
 		lista.clear();
 	}
+	
+	@Override
+	public String toString(){
+		String out = new String();
+		for (Articolo a: lista) {
+			out += "Articolo: \n" + a.toString();
+		}
+	
+	return out;
+	}
 }
