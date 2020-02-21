@@ -41,6 +41,39 @@ public class GestioneListe {
 	oppure serializzare la classe)*/
 	
 	// 5) Iterare sugli elementi di una lista (che devono essere mantenuti ordinati)
+	/*ordinamento per nome, creo una copia dell'articolo
+	 * e lavoro su questa, per poi poterla stampare correttamente*/
+	public void ordina(){
+	    
+		 ListaSpesa first;
+	     ListaSpesa next;
+	     int i = listeSpesa.size();
+	     while(i>0) 
+	       {
+	       for(int j=0; j < i-1; j++) 
+	         {
+	         first = listeSpesa.get(j);
+	         next = listeSpesa.get(j+1);
+	         if(first.getNome().compareTo(next.getNome())>0)
+	         {
+	        	 //scambiare il '<' con '>' per ottenere un ordinamento decrescente
+	           exchange(listeSpesa,j,j+1);
+	         }
+	         }
+	       i--;
+	     }
+	     
+	     
+	     //return a;
+	}
+	
+	
+   public void exchange(ArrayList<Articolo> a, int i, int j) 
+     {
+     Articolo tmp = a.get(i);
+     a.set(i, a.get(j));
+     a.set(j, tmp);
+     }
 	
 	/* 6) Inserire un articolo in una lista con una quantita 
 	(inizialmente l'articolo non e' categorizzato)*/

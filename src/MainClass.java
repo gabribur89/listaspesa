@@ -38,7 +38,8 @@ public class MainClass {
 		// determina se e' gia' stato prodotto il menu o no
 		boolean esistente = false;
 		GestioneListe liste = new GestioneListe();
-
+		Articolo a = new Articolo();
+		
 		do{
 			MainClass.stampaMenu(esistente);
 			esistente = true; 
@@ -70,8 +71,7 @@ public class MainClass {
 				GestioneListe.aggiungiCategoria(cat);
 				break;
 			case 5://ordinamento
-				Articolo a = new Articolo();
-				liste.ordina();
+				//GestioneListe.ordina(a);
 				a.stampa();
 				break;
 			case 8:
