@@ -56,12 +56,12 @@ public class GestioneListe {
 	/* 7) Cercare un articolo fornendo il prefisso della stringa 
 	(cercare anche nella lista degli articoli rimossi).
 	La ricerca ritorna l'indice dell' articolo nella lista della spesa o in quella dei rimossi.*/
-	public int cercaArticolo(String nomeLista, String prefisso, Articolo a){
+	public int cercaArticolo(String nomeLista, String prefisso){
 		for(int i=0;i<listeSpesa.size();i++)
 		{
 			
 		}
-		return -1; //se non ho trovato un nome, ritorno -1
+		return -1; //se non ho trovato, ritorno -1
 	}
 	
 	// 8) Rimuovere un articolo da una lista (questo lo mette nella lista dei rimossi).
@@ -82,9 +82,14 @@ public class GestioneListe {
 	/* 9) Ripristinare un articolo dalla lista dei rimossi (operazione contraria al
 	   metodo 8) */
 	
-	// 10) Modificare la categoria 11) modificare la quantita di un articolo
+	// 10) Modificare la categoria 
+	
+	// 11) modificare la quantita di un articolo
 	
 	// 12) Svuotare la lista degli articoli rimossi
+	public static void svuotaCancellati(){
+		cancellati.svuota();
+	}
 	
 	// metodo che restituisce la dimensione di una lista
 	public static int dimensioneLista(){

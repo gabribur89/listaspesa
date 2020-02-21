@@ -75,6 +75,10 @@ public class MainClass {
 				String prefisso = Input.readString();
 				GestioneListe.rimuoviArticolo(sceltalista, prefisso);
 				
+			case 12:
+				GestioneListe.svuotaCancellati();
+				System.out.println("Lista rimossi svuotata!");
+				break;
 			case 13:	
 				System.out.print("Stampo liste\n");
 				System.out.print(liste.toString());
