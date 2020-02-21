@@ -68,6 +68,12 @@ public class MainClass {
 				System.out.print("Inserisci il nome della categoria!");
 				String cat = Input.readString();
 				GestioneListe.aggiungiCategoria(cat);
+				break;
+			case 5://ordinamento
+				Articolo a = new Articolo();
+				liste.ordina();
+				a.stampa();
+				break;
 			case 8:
 				System.out.print("Nome della lista\n");
 				sceltalista = Input.readString();

@@ -37,4 +37,11 @@ public class Articolo {
 	public float getQta(){
 		return qta;
 	}
+	
+	public void stampa() {
+		System.out.println("-----------------");
+		System.out.println("nome: "+getNome());
+		System.out.println("data: "+getCategoria());
+		System.out.println("durata: "+getQta());
+}
 }
