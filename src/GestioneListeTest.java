@@ -6,7 +6,7 @@ import org.junit.Test;
 public class GestioneListeTest {
 
 	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	public static void svuotatutto() throws Exception {
 		GestioneListe.svuotaliste();
 	}
 	

@@ -10,6 +10,12 @@ public class Articolo {
 		this.qta = a.qta;
 	}
 	
+	public Articolo(String nome, String cat, int qta){
+		this.nome = nome;
+		this.categoria = cat;
+		this.qta = qta;
+	}
+		
 	public Articolo() {
 		// TODO Auto-generated constructor stub
 	}

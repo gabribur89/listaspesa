@@ -117,10 +117,12 @@ public class GestioneListe {
 	}
 
 	// metodo toString per stampare le liste  
+	@Override
 	public String toString() {
 		String out = new String(); 
-		for (String name: listeSpesa.keySet()){
-            out += name.toString()+"\n";
+		
+		for(HashMap.Entry<String, ListaSpesa> entry : listeSpesa.entrySet()) {
+		    out += entry.getKey().toString() + entry.getValue().toString() + "\n\n";
 		}
 
 		return out;

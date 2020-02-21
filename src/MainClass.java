@@ -81,7 +81,7 @@ public class MainClass {
 				break;
 			case 13:	
 				System.out.print("Stampo liste\n");
-				System.out.print(liste.toString());
+				System.out.print(liste);
 			case 0: //esci
 				System.out.println("\n ti saluto! Alla prossima! ");
 			default:
