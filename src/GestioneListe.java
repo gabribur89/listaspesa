@@ -1,5 +1,13 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import eccezioni.InputError;
 
 public class GestioneListe {
 	
@@ -12,6 +20,7 @@ public class GestioneListe {
 	//campo cancellati che rappresenta la lista 'cestino', dei rimossi
 	private static ListaSpesa cancellati = new ListaSpesa();
 	
+	private String out;
 	
 	// 1) Creare una lista dandole un nome
 	public static void creaLista(String nomeLista){
@@ -39,6 +48,59 @@ public class GestioneListe {
 	
 	/* 3) Leggere e 4) scrivere una lista su un file (potete scegliere se usare un file di testo 
 	oppure serializzare la classe)*/
+	public void leggidafile() throws FileNotFoundException, IOException {
+		try {
+		
+			BufferedReader br = new BufferedReader(new FileReader("leggimi.csv")); 
+		    //StringBuilder sb = new StringBuilder();
+		    String line = br.readLine();
+
+		    while (line != null) {
+		    	
+		    	System.out.println(line);
+		    	String[] campi = line.split(",");
+		    	if(campi.length == 3)
+		    	{
+		    	Articolo a = new Articolo();
+		    	a.setNome(campi[0]);
+		    	a.setCategoria(campi[1]);
+		    	a.setQta(Integer.parseInt(campi[2]));
+		    	inserisci(a);
+		    	System.out.println(Arrays.toString(campi));
+		    	}
+		    	else throw new NumeroCampiException();
+		        //sb.append(line);
+		        //sb.append(System.lineSeparator());
+		        line = br.readLine();
+		        
+		        //Agenda.inserisciApp(a);
+		    }
+		    br.close();
+		    //String everything = sb.toString();
+		}catch(FileNotFoundException e)
+		{
+			throw new InputError("Leggi da file InputError",e);
+		}
+	}
+	
+	public void scrivisufile(){
+		
+		try {
+	           FileWriter fw = new FileWriter(this.out,true);
+	           //fw.write(date+" : "+s);
+	           Iterator<Articolo> iter = a.iterator(); //metodo restituente iteratore per uso cicli
+	    	   while (iter.hasNext()){
+	    		   Articolo a = iter.next();
+	    		   //System.out.print(a.getOrario().toString());
+	    		   fw.write(a.getNome()+"," + a.getCategoria()+"," + a.getQta()+"," 
+	    		   +"\n");
+	    	   }
+	           fw.close();
+	       } catch (IOException ex) {
+	           System.err.println("Non posso salvarlo, mi dispiace");
+	       }
+		
+	}
 	
 	// 5) Iterare sugli elementi di una lista (che devono essere mantenuti ordinati)
 	/*ordinamento per nome, creo una copia dell'articolo
