@@ -1,9 +1,15 @@
 import static org.junit.Assert.*;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 
 public class GestioneListeTest {
 
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		GestioneListe.svuotaliste();
+	}
+	
 	@Test
 	public void testLista() {
 		GestioneListe.creaLista("prova");
@@ -22,7 +28,6 @@ public class GestioneListeTest {
 	
 	@Test
 	public void testAggiungiArticolo(){
-		GestioneListe.ripulisci();
 		Articolo a = new Articolo();
 		GestioneListe.creaLista("lista a");
 		GestioneListe.aggiungiArticolo("lista a", 10, a);
@@ -33,7 +38,6 @@ public class GestioneListeTest {
 	
 	@Test
 	public void testRimuoviArticolo(){
-		GestioneListe.ripulisci();
 		Articolo a = new Articolo();
 		a.setNome("foobar");
 		GestioneListe.creaLista("lista a");

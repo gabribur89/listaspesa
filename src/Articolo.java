@@ -2,20 +2,40 @@ public class Articolo {
 	
 	protected String nome;
 	protected String categoria;
-	protected float qta;
+	protected int qta;
 	
 	public Articolo(Articolo a){
-		nome = a.nome;
-		categoria = a.categoria;
-		qta = a.qta;
+		this.nome = a.nome;
+		this.categoria = a.categoria;
+		this.qta = a.qta;
 	}
 	
 	public Articolo() {
 		// TODO Auto-generated constructor stub
 	}
 
+	// equals() ridefinito per i campi di Articolo  
+    @Override
+    public boolean equals(Object o) { 
+  
+    	// Stesso object sono uguali di sicuro
+    	if (o == this) { 
+            return true; 
+        } 
+  
+    	// Devo avere un oggetto compatibile con Articolo
+    	if (!(o instanceof Articolo)) { 
+            return false; 
+        } 
+        
+    	Articolo c = (Articolo) o;
+    	
+        // Compare the data members and return accordingly, non considero la quantita   
+        return (this.nome == c.nome) && (this.categoria == c.categoria); 
+    } 
+	
 	public void setNome(String n){
-		nome = n;
+		this.nome = n;
 	}
 	
 	public String getNome(){
@@ -23,18 +43,23 @@ public class Articolo {
 	}
 	
 	public void setCategoria(String c){
-		categoria = c;
+		this.categoria = c;
 	}
 	
 	public String getCategoria(){
-		return categoria;
+		return this.categoria;
 	}
 	
-	public void setQta(float q){
-		qta = q;
+	public void setQta(int q){
+		this.qta = q;
 	}
 	
 	public float getQta(){
-		return qta;
+		return this.qta;
+	}
+	
+	@Override
+	public String toString(){
+		return String.format(this.nome +"\n" + this.categoria + "\n" + Integer.toString(this.qta));
 	}
 }

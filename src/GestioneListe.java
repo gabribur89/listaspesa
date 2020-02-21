@@ -37,6 +37,8 @@ public class GestioneListe {
 		return categorie.size();
 	}
 	
+	
+	
 	/* 3) Leggere e 4) scrivere una lista su un file (potete scegliere se usare un file di testo 
 	oppure serializzare la classe)*/
 	
@@ -96,7 +98,7 @@ public class GestioneListe {
 		return listeSpesa.size();
 	}
 	
-	public static void ripulisci() {
+	public static void svuotaliste() {
 		listeSpesa.clear();
 	}
 	
