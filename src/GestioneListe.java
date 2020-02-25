@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,7 +22,7 @@ public class GestioneListe {
 	//campo cancellati che rappresenta la lista 'cestino', dei rimossi
 	private static ListaSpesa cancellati = new ListaSpesa();
 	
-	private static String out;
+	private static File out = new File("salvato.csv");
 	
 	// 1) Creare una lista dandole un nome
 	public static void creaLista(String nomeLista){
@@ -66,7 +67,7 @@ public class GestioneListe {
 		    	a.setNome(campi[0]);
 		    	a.setQta(Integer.parseInt(campi[1]));
 		    	a.setCategoria(campi[2]);
-		    	inserisciLista(a);
+		    	//inserisciLista(a);
 		    	System.out.println(Arrays.toString(campi));
 		    	}
 		    	else throw new NumeroCampiException();
