@@ -40,8 +40,8 @@ public class Articolo {
 	
 	public void stampa() {
 		System.out.println("-----------------");
-		System.out.println("nome: "+getNome());
-		System.out.println("data: "+getCategoria());
-		System.out.println("durata: "+getQta());
+		System.out.println("nome articolo: "+getNome());
+		System.out.println("categoria: "+getCategoria());
+		System.out.println("quantita': "+getQta());
 }
 }

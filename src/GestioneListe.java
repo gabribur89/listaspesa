@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import eccezioni.InputError;
+import eccezioni.NumeroCampiException;
 
 public class GestioneListe {
 	
@@ -20,7 +21,7 @@ public class GestioneListe {
 	//campo cancellati che rappresenta la lista 'cestino', dei rimossi
 	private static ListaSpesa cancellati = new ListaSpesa();
 	
-	private String out;
+	private static String out;
 	
 	// 1) Creare una lista dandole un nome
 	public static void creaLista(String nomeLista){
@@ -48,7 +49,7 @@ public class GestioneListe {
 	
 	/* 3) Leggere e 4) scrivere una lista su un file (potete scegliere se usare un file di testo 
 	oppure serializzare la classe)*/
-	public void leggidafile() throws FileNotFoundException, IOException {
+	public static void leggidafile() throws FileNotFoundException, IOException, InputError, NumeroCampiException {
 		try {
 		
 			BufferedReader br = new BufferedReader(new FileReader("leggimi.csv")); 
@@ -63,9 +64,9 @@ public class GestioneListe {
 		    	{
 		    	Articolo a = new Articolo();
 		    	a.setNome(campi[0]);
-		    	a.setCategoria(campi[1]);
-		    	a.setQta(Integer.parseInt(campi[2]));
-		    	inserisci(a);
+		    	a.setQta(Integer.parseInt(campi[1]));
+		    	a.setCategoria(campi[2]);
+		    	inserisciLista(a);
 		    	System.out.println(Arrays.toString(campi));
 		    	}
 		    	else throw new NumeroCampiException();
@@ -83,15 +84,17 @@ public class GestioneListe {
 		}
 	}
 	
-	public void scrivisufile(){
+	private static void inserisciLista(){
+	}
+
+	public static void scrivisufile(){
 		
 		try {
-	           FileWriter fw = new FileWriter(this.out,true);
+	           FileWriter fw = new FileWriter(out,true);
 	           //fw.write(date+" : "+s);
 	           Iterator<Articolo> iter = a.iterator(); //metodo restituente iteratore per uso cicli
 	    	   while (iter.hasNext()){
 	    		   Articolo a = iter.next();
-	    		   //System.out.print(a.getOrario().toString());
 	    		   fw.write(a.getNome()+"," + a.getCategoria()+"," + a.getQta()+"," 
 	    		   +"\n");
 	    	   }
@@ -178,8 +181,14 @@ public class GestioneListe {
 	   metodo 8) */
 	
 	// 10) Modificare la categoria 
+	public static void modificaCategoria(){
+		
+	}
 	
 	// 11) modificare la quantita di un articolo
+	public static void modificaQta(int q){
+		
+	}
 	
 	// 12) Svuotare la lista degli articoli rimossi
 	public static void svuotaCancellati(){

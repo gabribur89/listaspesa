@@ -1,3 +1,4 @@
+import eccezioni.InputError;
 import eccezioni.SceltaSbagliata;
 import jbook.util.Input;
 
@@ -70,9 +71,32 @@ public class MainClass {
 				String cat = Input.readString();
 				GestioneListe.aggiungiCategoria(cat);
 				break;
+			case 3:
+				try {
+					GestioneListe.leggidafile();
+				}catch(InputError e){
+					System.out.println("Non ho trovato il file....");
+				}
+				catch (Exception e) {
+					System.out.println("Errore nella lettura da file");
+				}
+				System.out.println("File caricato correttamente");
+				break;
+			case 4:
+				try {
+					GestioneListe.scrivisufile();
+				}catch (Exception e) {
+					System.out.println("Errore nel salvataggio su file");
+				}
+				System.out.println("File salvato correttamente");
+				break;
 			case 5://ordinamento
 				//GestioneListe.ordina(a);
 				a.stampa();
+				break;
+			case 6:
+				break;
+			case 7:
 				break;
 			case 8:
 				System.out.print("Nome della lista\n");
@@ -80,7 +104,12 @@ public class MainClass {
 				System.out.print("Prefisso dell'articolo\n");
 				String prefisso = Input.readString();
 				GestioneListe.rimuoviArticolo(sceltalista, prefisso);
-				
+			case 9:
+				break;
+			case 10:
+				break;
+			case 11:
+				break;
 			case 12:
 				GestioneListe.svuotaCancellati();
 				System.out.println("Lista rimossi svuotata!");
