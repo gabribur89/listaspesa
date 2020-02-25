@@ -1,11 +1,18 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
-public class ListaSpesa {
+public class ListaSpesa implements Iterable<Articolo>{
 
 	//creo la lista 'ufficiosa'
 	private static ArrayList<Articolo> lista = new ArrayList<Articolo>();
 
+	@Override
+    public Iterator<Articolo> iterator() {
+        return lista.iterator();
+    }
+
+	
 	public int dimensione(){	 
 		return lista.size();
 	}
@@ -18,6 +25,14 @@ public class ListaSpesa {
 	public Articolo elimina(int i){
 		System.out.println(i);
 		return lista.remove(i);
+	}
+	
+	public boolean modificaCatArticolo(int i, String cat){
+		Articolo a = lista.get(i);
+		a.setCategoria(cat);
+		lista.set(i, a);
+		
+		return true;
 	}
 	
 	public int cercaPerNome(String n){

@@ -84,7 +84,9 @@ public class MainClass {
 				break;
 			case 4:
 				try {
-					GestioneListe.scrivisufile();
+					System.out.println("Nome lista da salvare su file");
+					String nomelista = Input.readString();
+					GestioneListe.scrivisufile(nomelista);
 				}catch (Exception e) {
 					System.out.println("Errore nel salvataggio su file");
 				}
@@ -107,6 +109,19 @@ public class MainClass {
 			case 9:
 				break;
 			case 10:
+				System.out.println(liste.toString());
+				System.out.println("Inserisci Nome lista");
+				sceltalista = Input.readString();
+				System.out.println(liste.getListaSpesa(sceltalista).toString());
+				System.out.println("Inserisci Nome articolo");
+				String articoloscelto = Input.readString();
+				System.out.println("inserisci nuova categoria");
+				String nuovacategoria = Input.readString();
+				ListaSpesa listaobj = liste.getListaSpesa(sceltalista);
+				int indicearticolo = listaobj.cercaPerNome(articoloscelto);
+				listaobj.modificaCatArticolo(indicearticolo, nuovacategoria);
+				
+					
 				break;
 			case 11:
 				break;

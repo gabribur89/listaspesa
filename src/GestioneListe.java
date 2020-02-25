@@ -60,43 +60,41 @@ public class GestioneListe {
 		    while (line != null) {
 		    	
 		    	System.out.println(line);
+		    	String nomelista;
+		    	// campi nel file
 		    	String[] campi = line.split(",");
 		    	if(campi.length == 3)
 		    	{
 		    	Articolo a = new Articolo();
-		    	a.setNome(campi[0]);
-		    	a.setQta(Integer.parseInt(campi[1]));
-		    	a.setCategoria(campi[2]);
-		    	//inserisciLista(a);
+		    	nomelista = campi[0];
+		    	a.setNome(campi[1]);
+		    	a.setCategoria(campi[3]);
+		        GestioneListe.aggiungiArticolo(nomelista, Integer.parseInt(campi[2]), a);
 		    	System.out.println(Arrays.toString(campi));
 		    	}
 		    	else throw new NumeroCampiException();
-		        //sb.append(line);
-		        //sb.append(System.lineSeparator());
 		        line = br.readLine();
 		        
-		        //Agenda.inserisciApp(a);
 		    }
 		    br.close();
-		    //String everything = sb.toString();
+		    
 		}catch(FileNotFoundException e)
 		{
 			throw new InputError("Leggi da file InputError",e);
 		}
 	}
 	
-	private static void inserisciLista(){
-	}
 
-	public static void scrivisufile(){
+	public static void scrivisufile(String nomelista){
 		
 		try {
 	           FileWriter fw = new FileWriter(out,true);
 	           //fw.write(date+" : "+s);
-	           Iterator<Articolo> iter = a.iterator(); //metodo restituente iteratore per uso cicli
+	           ListaSpesa l = listeSpesa.get(nomelista);
+	           Iterator<Articolo> iter = l.iterator(); //metodo restituente iteratore per uso cicli
 	    	   while (iter.hasNext()){
 	    		   Articolo a = iter.next();
-	    		   fw.write(a.getNome()+"," + a.getCategoria()+"," + a.getQta()+"," 
+	    		   fw.write(nomelista+"," + a.getNome()+"," + a.getCategoria()+"," + a.getQta()+"," 
 	    		   +"\n");
 	    	   }
 	           fw.close();
@@ -106,40 +104,6 @@ public class GestioneListe {
 		
 	}
 	
-	// 5) Iterare sugli elementi di una lista (che devono essere mantenuti ordinati)
-	/*ordinamento per nome, creo una copia dell'articolo
-	 * e lavoro su questa, per poi poterla stampare correttamente*/
-	public void ordina(){
-	    
-		 ListaSpesa first;
-	     ListaSpesa next;
-	     int i = listeSpesa.size();
-	     while(i>0) 
-	       {
-	       for(int j=0; j < i-1; j++) 
-	         {
-	         first = listeSpesa.get(j);
-	         next = listeSpesa.get(j+1);
-	         if(first.getNome().compareTo(next.getNome())>0)
-	         {
-	        	 //scambiare il '<' con '>' per ottenere un ordinamento decrescente
-	           exchange(listeSpesa,j,j+1);
-	         }
-	         }
-	       i--;
-	     }
-	     
-	     
-	     //return a;
-	}
-	
-	
-   public void exchange(ArrayList<Articolo> a, int i, int j) 
-     {
-     Articolo tmp = a.get(i);
-     a.set(i, a.get(j));
-     a.set(j, tmp);
-     }
 	
 	/* 6) Inserire un articolo in una lista con una quantita 
 	(inizialmente l'articolo non e' categorizzato)*/
@@ -215,7 +179,7 @@ public class GestioneListe {
 		return false;
 	}
 	
-	public static ListaSpesa getListaSpesa(String nomeLista){
+	public ListaSpesa getListaSpesa(String nomeLista){
 		return listeSpesa.get(nomeLista);
 	}
 
