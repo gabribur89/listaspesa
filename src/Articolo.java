@@ -68,4 +68,11 @@ public class Articolo {
 	public String toString(){
 		return String.format(this.nome +"\n" + this.categoria + "\n" + Integer.toString(this.qta));
 	}
+	
+	public void stampa() {
+		System.out.println("-----------------");
+		System.out.println("nome articolo: "+getNome());
+		System.out.println("categoria: "+getCategoria());
+		System.out.println("quantita': "+getQta());
+}
 }

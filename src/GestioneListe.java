@@ -1,5 +1,15 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import eccezioni.InputError;
+import eccezioni.NumeroCampiException;
 
 public class GestioneListe {
 	
@@ -12,6 +22,7 @@ public class GestioneListe {
 	//campo cancellati che rappresenta la lista 'cestino', dei rimossi
 	private static ListaSpesa cancellati = new ListaSpesa();
 	
+	private static File out = new File("salvato.csv");
 	
 	// 1) Creare una lista dandole un nome
 	public static void creaLista(String nomeLista){
@@ -41,8 +52,60 @@ public class GestioneListe {
 	
 	/* 3) Leggere e 4) scrivere una lista su un file (potete scegliere se usare un file di testo 
 	oppure serializzare la classe)*/
+	public static void leggidafile() throws FileNotFoundException, IOException, InputError, NumeroCampiException {
+		try {
+		
+			BufferedReader br = new BufferedReader(new FileReader("leggimi.csv")); 
+		    //StringBuilder sb = new StringBuilder();
+		    String line = br.readLine();
+
+		    while (line != null) {
+		    	
+		    	System.out.println(line);
+		    	String nomelista;
+		    	// campi nel file
+		    	String[] campi = line.split(",");
+		    	if(campi.length == 3)
+		    	{
+		    	Articolo a = new Articolo();
+		    	nomelista = campi[0];
+		    	a.setNome(campi[1]);
+		    	a.setCategoria(campi[3]);
+		        GestioneListe.aggiungiArticolo(nomelista, Integer.parseInt(campi[2]), a);
+		    	System.out.println(Arrays.toString(campi));
+		    	}
+		    	else throw new NumeroCampiException();
+		        line = br.readLine();
+		        
+		    }
+		    br.close();
+		    
+		}catch(FileNotFoundException e)
+		{
+			throw new InputError("Leggi da file InputError",e);
+		}
+	}
 	
-	// 5) Iterare sugli elementi di una lista (che devono essere mantenuti ordinati)
+
+	public static void scrivisufile(String nomelista){
+		
+		try {
+	           FileWriter fw = new FileWriter(out,true);
+	           //fw.write(date+" : "+s);
+	           ListaSpesa l = listeSpesa.get(nomelista);
+	           Iterator<Articolo> iter = l.iterator(); //metodo restituente iteratore per uso cicli
+	    	   while (iter.hasNext()){
+	    		   Articolo a = iter.next();
+	    		   fw.write(nomelista+"," + a.getNome()+"," + a.getCategoria()+"," + a.getQta()+"," 
+	    		   +"\n");
+	    	   }
+	           fw.close();
+	       } catch (IOException ex) {
+	           System.err.println("Non posso salvarlo, mi dispiace");
+	       }
+		
+	}
+	
 	
 	/* 6) Inserire un articolo in una lista con una quantita 
 	(inizialmente l'articolo non e' categorizzato)*/
@@ -85,8 +148,14 @@ public class GestioneListe {
 	   metodo 8) */
 	
 	// 10) Modificare la categoria 
+	public static void modificaCategoria(){
+		
+	}
 	
 	// 11) modificare la quantita di un articolo
+	public static void modificaQta(int q){
+		
+	}
 	
 	// 12) Svuotare la lista degli articoli rimossi
 	public static void svuotaCancellati(){
@@ -112,7 +181,7 @@ public class GestioneListe {
 		return false;
 	}
 	
-	public static ListaSpesa getListaSpesa(String nomeLista){
+	public ListaSpesa getListaSpesa(String nomeLista){
 		return listeSpesa.get(nomeLista);
 	}
 

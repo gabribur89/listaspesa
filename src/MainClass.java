@@ -1,3 +1,4 @@
+import eccezioni.InputError;
 import eccezioni.SceltaSbagliata;
 import jbook.util.Input;
 
@@ -38,7 +39,8 @@ public class MainClass {
 		// determina se e' gia' stato prodotto il menu o no
 		boolean esistente = false;
 		GestioneListe liste = new GestioneListe();
-
+		Articolo a = new Articolo();
+		
 		do{
 			MainClass.stampaMenu(esistente);
 			esistente = true; 
@@ -68,13 +70,61 @@ public class MainClass {
 				System.out.print("Inserisci il nome della categoria!");
 				String cat = Input.readString();
 				GestioneListe.aggiungiCategoria(cat);
+				break;
+			case 3:
+				try {
+					GestioneListe.leggidafile();
+				}catch(InputError e){
+					System.out.println("Non ho trovato il file....");
+				}
+				catch (Exception e) {
+					System.out.println("Errore nella lettura da file");
+				}
+				System.out.println("File caricato correttamente");
+				break;
+			case 4:
+				try {
+					System.out.println("Nome lista da salvare su file");
+					String nomelista = Input.readString();
+					GestioneListe.scrivisufile(nomelista);
+				}catch (Exception e) {
+					System.out.println("Errore nel salvataggio su file");
+				}
+				System.out.println("File salvato correttamente");
+				break;
+			case 5://ordinamento
+				//GestioneListe.ordina(a);
+				a.stampa();
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
 			case 8:
 				System.out.print("Nome della lista\n");
 				sceltalista = Input.readString();
 				System.out.print("Prefisso dell'articolo\n");
 				String prefisso = Input.readString();
 				GestioneListe.rimuoviArticolo(sceltalista, prefisso);
+			case 9:
+				break;
+			case 10:
+				System.out.println(liste.toString());
+				System.out.println("Inserisci Nome lista");
+				sceltalista = Input.readString();
+				System.out.println(liste.getListaSpesa(sceltalista).toString());
+				System.out.println("Inserisci Nome articolo");
+				String articoloscelto = Input.readString();
+				System.out.println("inserisci nuova categoria");
+				String nuovacategoria = Input.readString();
+				ListaSpesa listaobj = liste.getListaSpesa(sceltalista);
+				int indicearticolo = listaobj.cercaPerNome(articoloscelto);
+				listaobj.modificaCatArticolo(indicearticolo, nuovacategoria);
 				
+					
+				break;
+			case 11:
+				break;
 			case 12:
 				GestioneListe.svuotaCancellati();
 				System.out.println("Lista rimossi svuotata!");
