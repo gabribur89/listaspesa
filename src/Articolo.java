@@ -66,7 +66,9 @@ public class Articolo {
 	
 	@Override
 	public String toString(){
-		return String.format(this.nome +"\n" + this.categoria + "\n" + Integer.toString(this.qta));
+		return String.format("nome articolo: "+ this.nome +"\n"+ 
+				             "categoria: "+ this.categoria + "\n"+
+				             "quantita': "+ Integer.toString(this.qta));
 	}
 	
 	public void stampa() {

@@ -62,7 +62,7 @@ public class MainClass {
 			
 			switch(scelta){
 			case 1:
-				System.out.print("Inserisci il nome della lista!");
+				System.out.print("Inserisci il nome della lista!\n\n");
 				sceltalista = Input.readString();
 				GestioneListe.creaLista(sceltalista);
 				break;
@@ -97,6 +97,15 @@ public class MainClass {
 				a.stampa();
 				break;
 			case 6:
+				Articolo art = new Articolo();
+				System.out.println("Nome della lista");
+				String nomelista = Input.readString();
+				System.out.println("Nome dell'articolo");
+				art.setNome(Input.readString());
+				System.out.println("Nome Categoria");
+				art.setCategoria(Input.readString());
+				System.out.println("quantità");
+				GestioneListe.aggiungiArticolo(nomelista, Input.readInt(), art);
 				break;
 			case 7:
 				break;
@@ -130,7 +139,6 @@ public class MainClass {
 				System.out.println("Lista rimossi svuotata!");
 				break;
 			case 13:	
-				System.out.print("Stampo liste\n");
 				System.out.print(liste);
 			case 0: //esci
 				System.out.println("\n ti saluto! Alla prossima! ");
