@@ -121,12 +121,20 @@ public class GestioneListe {
 	/* 7) Cercare un articolo fornendo il prefisso della stringa 
 	(cercare anche nella lista degli articoli rimossi).
 	La ricerca ritorna l'indice dell' articolo nella lista della spesa o in quella dei rimossi.*/
-	public int cercaArticolo(String nomeLista, String prefisso){
-		for(int i=0;i<listeSpesa.size();i++)
+	public static ArrayList<String> cercaArticolo(String prefisso){
+		// qui metto i nomi delle liste dove ho trovato l'articolo
+		ArrayList<String> out = new ArrayList<String>();
+		// itero tutte le liste
+		for (HashMap.Entry<String, ListaSpesa> lista : listeSpesa.entrySet()) 
+		//for(int i=0;i<listeSpesa.size();i++)
 		{
-			
+			// per ogni elemento dell'hashmap prendo la lista ed eseguo il suo metodo cerca()
+			if(lista.getValue().cercaPerNome(prefisso) != -1) {
+				out.add(lista.getKey());
+			}
 		}
-		return -1; //se non ho trovato, ritorno -1
+				
+		return out; 
 	}
 	
 	// 8) Rimuovere un articolo da una lista (questo lo mette nella lista dei rimossi).
@@ -166,10 +174,15 @@ public class GestioneListe {
 	public static int dimensioneLista(){
 		return listeSpesa.size();
 	}
+
+	public static int dimensioneCancellati(){
+		return cancellati.dimensione();
+	}
 	
 	public static void svuotaliste() {
 		listeSpesa.clear();
 	}
+
 	
 	// metodo che cancella una lista 
 	public static boolean cancellaLista(String nomeLista) {
@@ -181,7 +194,7 @@ public class GestioneListe {
 		return false;
 	}
 	
-	public ListaSpesa getListaSpesa(String nomeLista){
+	public static ListaSpesa getListaSpesa(String nomeLista){
 		return listeSpesa.get(nomeLista);
 	}
 
@@ -190,8 +203,9 @@ public class GestioneListe {
 	public String toString() {
 		String out = new String(); 
 		
+		System.out.println("Liste: \n");
 		for(HashMap.Entry<String, ListaSpesa> entry : listeSpesa.entrySet()) {
-		    out += entry.getKey().toString() + entry.getValue().toString() + "\n\n";
+		    out += "Lista: " + entry.getKey().toString() + "\n\n" + entry.getValue().toString() + "\n\n";
 		}
 
 		return out;

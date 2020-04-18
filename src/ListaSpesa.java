@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class ListaSpesa implements Iterable<Articolo>{
 
 	//creo la lista 'ufficiosa'
-	private static ArrayList<Articolo> lista = new ArrayList<Articolo>();
+	private ArrayList<Articolo> lista = new ArrayList<Articolo>();
 
 	@Override
     public Iterator<Articolo> iterator() {
@@ -80,7 +80,7 @@ public class ListaSpesa implements Iterable<Articolo>{
      }
    
 	public void stampa() {
-		for(Articolo a: ListaSpesa.lista) {
+		for(Articolo a: lista) {
 		    a.stampa();
 	    }
 	}
