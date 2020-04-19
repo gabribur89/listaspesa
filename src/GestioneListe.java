@@ -121,7 +121,7 @@ public class GestioneListe {
 	/* 7) Cercare un articolo fornendo il prefisso della stringa 
 	(cercare anche nella lista degli articoli rimossi).
 	La ricerca ritorna l'indice dell' articolo nella lista della spesa o in quella dei rimossi.*/
-	public static ArrayList<String> cercaArticolo(String prefisso){
+	public static ArrayList<String> cercaArticoloInTutteLeListe(String prefisso){
 		// qui metto i nomi delle liste dove ho trovato l'articolo
 		ArrayList<String> out = new ArrayList<String>();
 		// itero tutte le liste
@@ -134,8 +134,36 @@ public class GestioneListe {
 			}
 			
 		}
-				
+		
+		//ricerca in lista rimossi
+		if(cancellati.cercaPerNome(prefisso) != -1){
+			out.add("cancellati");
+		}
 		return out; 
+	}
+	
+	public static int cercaArticolo(String nomelista, Articolo a){
+		
+		//di default
+		int indice = -1;
+		
+		if(listeSpesa.containsKey(nomelista))
+		{
+			indice = listeSpesa.get(nomelista).cercaPerNome(a.getNome());
+			if( indice != -1)
+			{
+				return indice;
+			}
+		}
+		
+		indice = cancellati.cercaPerNome(a.getNome());
+		if(indice != -1)
+		{
+			return indice;
+		}
+		
+		return indice;
+		
 	}
 	
 	// 8) Rimuovere un articolo da una lista (questo lo mette nella lista dei rimossi).

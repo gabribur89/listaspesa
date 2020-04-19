@@ -45,6 +45,7 @@ public class ListaSpesa implements Iterable<Articolo>{
 		return true;
 	}
 	
+	//cerco nome di un articolo
 	public int cercaPerNome(String n){
 		for(Articolo art: lista){
 			if (art.getNome().contains(n)){

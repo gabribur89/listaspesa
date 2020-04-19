@@ -76,10 +76,34 @@ public class GestioneListeTest {
 		GestioneListe.aggiungiArticolo("lista b", 2, a);
 		GestioneListe.aggiungiArticolo("lista c", 2, b);
 		
-		ArrayList<String> risultato = GestioneListe.cercaArticolo("foobar");
+		ArrayList<String> risultato = GestioneListe.cercaArticoloInTutteLeListe("foobar");
+		System.out.println(risultato);
 		assertTrue(risultato.size() == 2);
 	}
 	
+	@Test
+	public void testCercaArticolo(){
+		
+		Articolo a = new Articolo();
+		a.setNome("foobar");
+		Articolo b = new Articolo();
+		b.setNome("newbar");
+
+		GestioneListe.svuotaliste();
+		GestioneListe.creaLista("lista a");
+		GestioneListe.creaLista("lista b");
+		GestioneListe.creaLista("lista c");
+
+		GestioneListe.aggiungiArticolo("lista a", 10, a);
+		GestioneListe.aggiungiArticolo("lista a", 10, b);
+		GestioneListe.aggiungiArticolo("lista b", 2, a);
+		GestioneListe.aggiungiArticolo("lista c", 2, b);
+		
+		int risultato = GestioneListe.cercaArticolo("lista a",b);
+		System.out.println(risultato);
+		assertTrue(risultato == 0);
+		
+	}
 	
 	
 }
