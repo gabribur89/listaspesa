@@ -27,9 +27,19 @@ public class ListaSpesa implements Iterable<Articolo>{
 		return lista.remove(i);
 	}
 	
+	// 10) Modificare la categoria
 	public boolean modificaCatArticolo(int i, String cat){
 		Articolo a = lista.get(i);
 		a.setCategoria(cat);
+		lista.set(i, a);
+		
+		return true;
+	}
+	
+	// 11) modificare la quantita di un articolo
+	public boolean modificaQtaArticolo(int i, int qta){
+		Articolo a = lista.get(i);
+		a.setQta(qta);
 		lista.set(i, a);
 		
 		return true;

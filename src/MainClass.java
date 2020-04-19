@@ -104,10 +104,15 @@ public class MainClass {
 				art.setNome(Input.readString());
 				System.out.println("Nome Categoria");
 				art.setCategoria(Input.readString());
-				System.out.println("quantità");
+				System.out.println("quantita");
 				GestioneListe.aggiungiArticolo(nomelista, Input.readInt(), art);
 				break;
 			case 7:
+				System.out.print("Cerca un articolo in tutte le liste(anche rimossi):\n");
+				String scelta_art = Input.readString();
+				GestioneListe.cercaArticolo(scelta_art);
+				//mostro lista ufficiosa o lista cancellati dove ho trovato articoli
+				//
 				break;
 			case 8:
 				System.out.print("Nome della lista\n");
@@ -115,24 +120,37 @@ public class MainClass {
 				System.out.print("Prefisso dell'articolo\n");
 				String prefisso = Input.readString();
 				GestioneListe.rimuoviArticolo(sceltalista, prefisso);
+				System.out.print("articolo con prefisso" + prefisso + "eliminato!\n");
 			case 9:
+				System.out.println("Inserisci nome articolo da ripristinare nella lista della spesa:\n");
+				String nome_art = Input.readString();
+				GestioneListe.ripristinaCancellato(nome_art);
 				break;
 			case 10:
 				System.out.println(liste.toString());
 				System.out.println("Inserisci Nome lista");
 				sceltalista = Input.readString();
-				System.out.println(liste.getListaSpesa(sceltalista).toString());
+				System.out.println(GestioneListe.getListaSpesa(sceltalista).toString());
 				System.out.println("Inserisci Nome articolo");
 				String articoloscelto = Input.readString();
 				System.out.println("inserisci nuova categoria");
 				String nuovacategoria = Input.readString();
-				ListaSpesa listaobj = liste.getListaSpesa(sceltalista);
+				ListaSpesa listaobj = GestioneListe.getListaSpesa(sceltalista);
 				int indicearticolo = listaobj.cercaPerNome(articoloscelto);
 				listaobj.modificaCatArticolo(indicearticolo, nuovacategoria);
-				
-					
 				break;
 			case 11:
+				System.out.println(liste.toString());
+				System.out.println("Inserisci Nome lista");
+				sceltalista = Input.readString();
+				System.out.println(GestioneListe.getListaSpesa(sceltalista).toString());
+				System.out.println("Inserisci Nome articolo");
+				String art_scelto = Input.readString();
+				System.out.println("inserisci nuova quantita");
+				int nuovaqta = Input.readInt();
+				ListaSpesa lista_o = GestioneListe.getListaSpesa(sceltalista);
+				int ind_articolo = lista_o.cercaPerNome(art_scelto);
+				lista_o.modificaQtaArticolo(ind_articolo, nuovaqta);
 				break;
 			case 12:
 				GestioneListe.svuotaCancellati();

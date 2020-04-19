@@ -125,13 +125,14 @@ public class GestioneListe {
 		// qui metto i nomi delle liste dove ho trovato l'articolo
 		ArrayList<String> out = new ArrayList<String>();
 		// itero tutte le liste
-		for (HashMap.Entry<String, ListaSpesa> lista : listeSpesa.entrySet()) 
+		for(HashMap.Entry<String, ListaSpesa> lista : listeSpesa.entrySet()) 
 		//for(int i=0;i<listeSpesa.size();i++)
 		{
 			// per ogni elemento dell'hashmap prendo la lista ed eseguo il suo metodo cerca()
 			if(lista.getValue().cercaPerNome(prefisso) != -1) {
 				out.add(lista.getKey());
 			}
+			
 		}
 				
 		return out; 
@@ -154,15 +155,14 @@ public class GestioneListe {
 	
 	/* 9) Ripristinare un articolo dalla lista dei rimossi (operazione contraria al
 	   metodo 8) */
-	
-	// 10) Modificare la categoria 
-	public static void modificaCategoria(){
-		
-	}
-	
-	// 11) modificare la quantita di un articolo
-	public static void modificaQta(int q){
-		
+	public static boolean ripristinaCancellato(String nome){
+		if(cancellati.dimensione()>0)
+		{
+			for()
+			cancellati.elimina(i);
+			return true;
+		}
+		return false;
 	}
 	
 	// 12) Svuotare la lista degli articoli rimossi
