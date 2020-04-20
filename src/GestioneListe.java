@@ -52,6 +52,11 @@ public class GestioneListe {
 		return categorie.size();
 	}
 	
+	//modifica categoria
+	public static void modificaCategoria(String vecchia, String nuova){
+		categorie.remove(vecchia);
+		categorie.add(nuova);
+	}
 	
 	
 	
