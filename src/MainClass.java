@@ -34,7 +34,7 @@ public class MainClass {
 	
 	
 	// Inizio del programma
-	public static void main(String[] args) throws SceltaSbagliata{
+	public static void main(String[] args) throws SceltaSbagliata, NullPointerException{
 		
 		int scelta = 0;
 		String sceltalista;
@@ -66,14 +66,21 @@ public class MainClass {
 			
 			switch(scelta){
 			case 1:
-				System.out.print("Inserisci il nome della lista!\n\n");
-				sceltalista = Input.readString();
-				if (li.cercaPerNome(sceltalista) != -1)
-				{
-					System.out.println("Non ho trovato niente");
+				try {
+					System.out.print("Inserisci il nome della lista!\n\n");
+					sceltalista = Input.readString();
+					if (li.cercaPerNome(sceltalista) != -1)
+					{
+						System.out.println("Lista esistente, inserimento non avvenuto");
+						break;
+					}
+					GestioneListe.creaLista(sceltalista);
+					break;
+				} catch (NullPointerException e) {
+					System.out.println("Input non consentito");
+					break;
 				}
-				GestioneListe.creaLista(sceltalista);
-				break;
+				
 			case 2:
 				System.out.print("Inserisci il nome della categoria!");
 				String cat = Input.readString();
@@ -130,8 +137,15 @@ public class MainClass {
 				String nomelista = Input.readString();
 				System.out.println("Nome dell'articolo");
 				art.setNome(Input.readString());
-				System.out.println("Nome Categoria");
-				art.setCategoria(Input.readString());
+				System.out.println("Lista delle categorie");
+				System.out.println(GestioneListe.listatoCategorie());
+				System.out.println("Scrivi il nome di una delle Categorie");
+				String nuovacategoria = Input.readString();
+				if(!GestioneListe.categoriaValida(nuovacategoria)) {
+					System.out.println("errore, categoria non valida");
+					break;
+				}
+				art.setCategoria(nuovacategoria);
 				System.out.println("quantita");
 				GestioneListe.aggiungiArticolo(nomelista, Input.readInt(), art);
 				break;
@@ -162,18 +176,29 @@ public class MainClass {
 				GestioneListe.ripristinaCancellato(nomelista1, nome_art);
 				break;
 			case 12:
-				System.out.println(liste.toString());
-				System.out.println("Inserisci Nome lista");
-				sceltalista = Input.readString();
-				System.out.println(GestioneListe.getListaSpesa(sceltalista).toString());
-				System.out.println("Inserisci Nome articolo");
-				String articoloscelto = Input.readString();
-				System.out.println("inserisci nuova categoria");
-				String nuovacategoria = Input.readString();
-				ListaSpesa listaobj = GestioneListe.getListaSpesa(sceltalista);
-				int indicearticolo = listaobj.cercaPerNome(articoloscelto);
-				listaobj.modificaCatArticolo(indicearticolo, nuovacategoria);
-				break;
+				try {
+					System.out.println(liste.toString());
+					System.out.println("Inserisci Nome lista");
+					sceltalista = Input.readString();
+					System.out.println(GestioneListe.getListaSpesa(sceltalista).toString());
+					System.out.println("Inserisci Nome articolo");
+					String articoloscelto = Input.readString();
+					System.out.println("Lista delle categorie\n======================");
+					System.out.println(GestioneListe.listatoCategorie());
+					System.out.println("Scrivi il nome della categoria scelta");
+					String nuovacategoria1 = Input.readString();
+					if(!GestioneListe.categoriaValida(nuovacategoria1)) {
+						System.out.println("errore, categoria non valida");
+						break;
+					}
+					ListaSpesa listaobj = GestioneListe.getListaSpesa(sceltalista);
+					int indicearticolo = listaobj.cercaPerNome(articoloscelto);
+					listaobj.modificaCatArticolo(indicearticolo, nuovacategoria1);
+					break;
+				} catch (NullPointerException e) {
+					System.out.println("Input non consentito");
+					break;
+				}
 			case 13:
 				System.out.println(liste.toString());
 				System.out.println("Inserisci Nome lista");

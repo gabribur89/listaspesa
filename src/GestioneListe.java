@@ -58,7 +58,18 @@ public class GestioneListe {
 		categorie.add(nuova);
 	}
 	
+	public static String listatoCategorie() {
+		String out = "";
+		for (String cat: categorie) {
+			out = out + cat + "\n";
+		}
+		
+		return out;
+	}
 	
+	public static boolean categoriaValida(String nomecat) {
+		return categorie.contains(nomecat);
+	}
 	
 	/* 3) Leggere e 4) scrivere una lista su un file (potete scegliere se usare un file di testo 
 	oppure serializzare la classe)*/
