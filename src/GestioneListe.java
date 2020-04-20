@@ -16,9 +16,11 @@ public class GestioneListe {
 	/*un campo statico listeSpesa con l'associazione fra il 
 	nome di una lista e un riferimento a un oggetto di tipo ListaSpesa*/
 	private static HashMap<String, ListaSpesa> listeSpesa = new HashMap<String,ListaSpesa>();
+	
 	/*un campo static categorie che lista tutte
-	le categorie (che sono comuni a tutte le liste della spesa)*/
-	private static ArrayList<String> categorie = new ArrayList<String>();
+	le categorie (che sono comuni a tutte le liste della spesa)
+	private static ArrayList<String> categorie = new ArrayList<String>();*/
+	
 	//campo cancellati che rappresenta la lista 'cestino', dei rimossi
 	private static ListaSpesa cancellati = new ListaSpesa();
 	
@@ -27,13 +29,16 @@ public class GestioneListe {
 	// 1) Creare una lista dandole un nome
 	public static void creaLista(String nomeLista){
 		if(!listeSpesa.containsKey(nomeLista)) 
+		//se il mio oggetto listeSpesa non contiene un nome, lo aggiungo
+		//e di conseguenza viene creato l'oggetto stesso
 		{
 			listeSpesa.put(nomeLista, new ListaSpesa());
 		}
 	}
 	
-	// 2) Creare una categoria
-	// sarebbe un metodo analogo a setCategoria() della classe Articolo ???
+	/*
+	 // 2) Creare una categoria
+	
 	public static void aggiungiCategoria(String s){
 		categorie.add(s);
 	}
@@ -47,6 +52,7 @@ public class GestioneListe {
 	public static int dimensioneCategoria(){
 		return categorie.size();
 	}
+	*/
 	
 	
 	
@@ -70,8 +76,8 @@ public class GestioneListe {
 		    	Articolo a = new Articolo();
 		    	nomelista = campi[0];
 		    	a.setNome(campi[1]);
-		    	a.setCategoria(campi[3]);
 		        GestioneListe.aggiungiArticolo(nomelista, Integer.parseInt(campi[2]), a);
+		    	a.setCategoria(campi[3]);
 		    	System.out.println(Arrays.toString(campi));
 		    	}
 		    	else throw new NumeroCampiException();
@@ -96,7 +102,7 @@ public class GestioneListe {
 	           Iterator<Articolo> iter = l.iterator(); //metodo restituente iteratore per uso cicli
 	    	   while (iter.hasNext()){
 	    		   Articolo a = iter.next();
-	    		   fw.write(nomelista+"," + a.getNome()+"," + a.getCategoria()+"," + a.getQta()+"," 
+	    		   fw.write("Lista: " + nomelista +" ," + "Nome Articolo: " + a.getNome() + "," + "Nome Categoria: " + a.getCategoria() + "," + "Quantita': " + a.getQta()+"," 
 	    		   +"\n");
 	    	   }
 	           fw.close();
@@ -142,21 +148,21 @@ public class GestioneListe {
 		return out; 
 	}
 	
-	public static int cercaArticolo(String nomelista, Articolo a){
+	public static int cercaArticolo(String nomelista, String nomeart){
 		
 		//di default
 		int indice = -1;
 		
 		if(listeSpesa.containsKey(nomelista))
 		{
-			indice = listeSpesa.get(nomelista).cercaPerNome(a.getNome());
+			indice = listeSpesa.get(nomelista).cercaPerNome(nomeart);
 			if( indice != -1)
 			{
 				return indice;
 			}
 		}
 		
-		indice = cancellati.cercaPerNome(a.getNome());
+		indice = cancellati.cercaPerNome(nomeart);
 		if(indice != -1)
 		{
 			return indice;
@@ -167,10 +173,10 @@ public class GestioneListe {
 	}
 	
 	// 8) Rimuovere un articolo da una lista (questo lo mette nella lista dei rimossi).
-	public static boolean rimuoviArticolo(String nomeLista, String prefisso){
+	public static boolean rimuoviArticolo(String nomeLista, String nomearticolo){
 		if(listeSpesa.containsKey(nomeLista))
 		{
-			int indice = listeSpesa.get(nomeLista).cercaPerNome(prefisso);
+			int indice = listeSpesa.get(nomeLista).cercaPerNome(nomearticolo);
 			if (indice == -1)
 				return false;
 			
@@ -183,11 +189,16 @@ public class GestioneListe {
 	
 	/* 9) Ripristinare un articolo dalla lista dei rimossi (operazione contraria al
 	   metodo 8) */
-	public static boolean ripristinaCancellato(String nome){
+	public static boolean ripristinaCancellato(String nomeLista, String nomearticolo){
 		if(cancellati.dimensione()>0)
 		{
-			for()
-			cancellati.elimina(i);
+			// prima ottengo l'indice
+			int trovato = cancellati.cercaPerNome(nomearticolo);
+			// l'indice mi serve per ottenere l'oggetto Articolo in questione
+			Articolo oggettoArt = cancellati.getArticolo(trovato);
+		    // metto l'articolo nella lista
+			listeSpesa.get(nomeLista).aggiungi(oggettoArt);
+			
 			return true;
 		}
 		return false;
@@ -210,7 +221,10 @@ public class GestioneListe {
 	public static void svuotaliste() {
 		listeSpesa.clear();
 	}
-
+	
+	public static void stampaCancellati(){
+		cancellati.stampa();
+	}
 	
 	// metodo che cancella una lista 
 	public static boolean cancellaLista(String nomeLista) {

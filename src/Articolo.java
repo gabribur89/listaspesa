@@ -4,6 +4,7 @@ public class Articolo {
 	protected String categoria;
 	protected int qta;
 	
+	//costruttori: mi permettono di inizializzare i valori dei campi degli oggetti
 	public Articolo(Articolo a){
 		this.nome = a.nome;
 		this.categoria = a.categoria;
@@ -36,10 +37,11 @@ public class Articolo {
         
     	Articolo c = (Articolo) o;
     	
-        // Compare the data members and return accordingly, non considero la quantita   
+        // Compare fra dati e ritorno di essi, non considero la quantita'   
         return (this.nome == c.nome) && (this.categoria == c.categoria); 
     } 
 	
+    //setter e getter
 	public void setNome(String n){
 		this.nome = n;
 	}
@@ -64,17 +66,18 @@ public class Articolo {
 		return this.qta;
 	}
 	
+	//ereditarieta', mi consente di sovrascrivere(override)
+	//un metodo in una sottoclasse
 	@Override
 	public String toString(){
-		return String.format("nome articolo: "+ this.nome +"\n"+ 
+		return String.format("\nnome articolo: "+ this.nome +"\n"+ 
 				             "categoria: "+ this.categoria + "\n"+
 				             "quantita': "+ Integer.toString(this.qta));
 	}
 	
 	public void stampa() {
-		System.out.println("-----------------");
-		System.out.println("nome articolo: "+getNome());
+		System.out.println("\nnome articolo: "+getNome());
 		System.out.println("categoria: "+getCategoria());
-		System.out.println("quantita': "+getQta());
+		System.out.println("quantita'\n: "+getQta());
 }
 }

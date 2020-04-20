@@ -20,6 +20,7 @@ public class GestioneListeTest {
 		assertTrue(GestioneListe.dimensioneLista()==0);
 	}
 	
+	/*
 	@Test
 	public void testCategoria(){
 		GestioneListe.aggiungiCategoria("bagno");
@@ -27,6 +28,7 @@ public class GestioneListeTest {
 		GestioneListe.eliminaCategoria("bagno");
 		assertTrue(GestioneListe.dimensioneCategoria()==0);
 	}
+	*/
 	
 	@Test
 	public void testAggiungiArticolo(){
@@ -99,9 +101,9 @@ public class GestioneListeTest {
 		GestioneListe.aggiungiArticolo("lista b", 2, a);
 		GestioneListe.aggiungiArticolo("lista c", 2, b);
 		
-		int risultato = GestioneListe.cercaArticolo("lista a",b);
+		int risultato = GestioneListe.cercaArticolo("lista a",b.getNome());
 		System.out.println(risultato);
-		assertTrue(risultato == 0);
+		assertTrue(risultato == 1);
 		
 	}
 	

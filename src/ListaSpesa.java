@@ -17,6 +17,10 @@ public class ListaSpesa implements Iterable<Articolo>{
 		return lista.size();
 	}
 	
+	public Articolo getArticolo(int indice){
+		return lista.get(indice);
+	}
+	
 	public int aggiungi(Articolo a) {
 		 lista.add(a);
 		 return lista.indexOf(a);
@@ -104,7 +108,7 @@ public class ListaSpesa implements Iterable<Articolo>{
 	public String toString(){
 		String out = new String();
 		for (Articolo a: lista) {
-			out += "Articolo: \n" + a.toString();
+			out += "\nArticolo: \n" + a.toString();
 		}
 	
 	return out;
