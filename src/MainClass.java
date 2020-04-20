@@ -107,9 +107,10 @@ public class MainClass {
 					System.out.println("Non ho trovato il file....");
 				}
 				catch (Exception e) {
-					System.out.println("Errore nella lettura da file");
+					System.out.println("Errore nella lettura dei dati da file");
 				}
-				System.out.println("File caricato correttamente");
+				System.out.println("Liste caricate correttamente");
+				
 				break;
 			case 6:
 				try {

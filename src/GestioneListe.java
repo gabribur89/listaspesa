@@ -86,7 +86,7 @@ public class GestioneListe {
 		    	String nomelista;
 		    	// campi nel file
 		    	String[] campi = line.split(",");
-		    	if(campi.length == 3)
+		    	if(campi.length == 4)
 		    	{
 		    	Articolo a = new Articolo();
 		    	nomelista = campi[0];
