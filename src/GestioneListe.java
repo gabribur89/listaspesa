@@ -17,9 +17,9 @@ public class GestioneListe {
 	nome di una lista e un riferimento a un oggetto di tipo ListaSpesa*/
 	private static HashMap<String, ListaSpesa> listeSpesa = new HashMap<String,ListaSpesa>();
 	
-	/*un campo static categorie che lista tutte
-	le categorie (che sono comuni a tutte le liste della spesa)
-	private static ArrayList<String> categorie = new ArrayList<String>();*/
+	//un campo static categorie che lista tutte
+	//le categorie (che sono comuni a tutte le liste della spesa)
+	private static ArrayList<String> categorie = new ArrayList<String>();
 	
 	//campo cancellati che rappresenta la lista 'cestino', dei rimossi
 	private static ListaSpesa cancellati = new ListaSpesa();
@@ -36,7 +36,6 @@ public class GestioneListe {
 		}
 	}
 	
-	/*
 	 // 2) Creare una categoria
 	
 	public static void aggiungiCategoria(String s){
@@ -52,7 +51,7 @@ public class GestioneListe {
 	public static int dimensioneCategoria(){
 		return categorie.size();
 	}
-	*/
+	
 	
 	
 	

@@ -12,7 +12,7 @@ public class MainClass {
 		System.out.println("\n\n GESTIONE LISTE DELLA SPESA");
 		System.out.println("\n\n");
 		System.out.println("1 - Crea una lista");
-		//System.out.println("2 - Crea una categoria");
+		System.out.println("2 - Crea una categoria");
 		System.out.println("3 - Leggi lista da file");
 		System.out.println("4 - Scrivi lista su file");
 		System.out.println("5 - Ordina elementi lista");
@@ -73,11 +73,9 @@ public class MainClass {
 				GestioneListe.creaLista(sceltalista);
 				break;
 			case 2:
-				/*
 				System.out.print("Inserisci il nome della categoria!");
 				String cat = Input.readString();
 				GestioneListe.aggiungiCategoria(cat);
-				*/
 				break;
 			case 3:
 				try {
