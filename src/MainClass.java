@@ -17,14 +17,14 @@ public class MainClass {
 		System.out.println("4 - Elimina una categoria");
 		System.out.println("5 - Leggi lista da file");
 		System.out.println("6 - Scrivi lista su file");
-		System.out.println("7 - Ordina elementi lista");
+		System.out.println("7 - Ordina elementi lista per nome articolo");
 		System.out.println("8 - Inserisci un articolo in una lista (con categoria e quantita')");
 		System.out.println("9 - Cerca un articolo nelle due liste");
 		System.out.println("10 - Rimuovi un articolo (lo mette nella lista dei rimossi)");
 		System.out.println("11 - Ripristina un articolo dalla lista dei rimossi");
 		System.out.println("12 - Modifica categoria di un articolo");
 		System.out.println("13 - Modifica quantita' di un articolo");
-		System.out.println("14 - Stampa lista cancellati");
+		System.out.println("14 - Stampa lista rimossi");
 		System.out.println("15 - Svuota lista rimossi");
 		System.out.println("16 - Stampa liste");
 		System.out.println("0 - Esci ");
@@ -61,7 +61,7 @@ public class MainClass {
 				  System.out.print("Devi inserire solo numeri interi!");
 			} catch(SceltaSbagliata e){
 				  scelta = 99;
-				  System.out.println("Devi inserire un numero tra 0 e 9!");
+				  System.out.println("Devi inserire un numero tra 0 e 16!");
 			};
 			
 			switch(scelta){
@@ -133,6 +133,7 @@ public class MainClass {
 				System.out.println(l); 
 				break;
 			case 8:
+				try{
 				Articolo art = new Articolo();
 				System.out.println("Nome della lista");
 				String nomelista = Input.readString();
@@ -149,6 +150,9 @@ public class MainClass {
 				art.setCategoria(nuovacategoria);
 				System.out.println("quantita");
 				GestioneListe.aggiungiArticolo(nomelista, Input.readInt(), art);
+				}catch (NumberFormatException e){
+					System.out.println("Devi inserire solo numeri interi!");
+			    }
 				break;
 			case 9:
 				System.out.print("Nome della lista:\n");
@@ -164,7 +168,7 @@ public class MainClass {
 			case 10:
 				System.out.print("Nome della lista\n");
 				sceltalista = Input.readString();
-				System.out.print("Prefisso dell'articolo\n");
+				System.out.print("Nome dell'articolo\n");
 				String nomear = Input.readString();
 				GestioneListe.rimuoviArticolo(sceltalista, nomear);
 				System.out.print("articolo con nome: " + nomear + " eliminato!\n");
@@ -201,6 +205,7 @@ public class MainClass {
 					break;
 				}
 			case 13:
+				try{
 				System.out.println(liste.toString());
 				System.out.println("Inserisci Nome lista");
 				sceltalista = Input.readString();
@@ -212,9 +217,12 @@ public class MainClass {
 				ListaSpesa lista_o = GestioneListe.getListaSpesa(sceltalista);
 				int ind_articolo = lista_o.cercaPerNome(art_scelto);
 				lista_o.modificaQtaArticolo(ind_articolo, nuovaqta);
+				}catch (NumberFormatException e){
+					System.out.println("Devi inserire solo numeri interi!");
+			    }
 				break;
 			case 14:
-				System.out.println("Lista articoli cancellati:\n");
+				System.out.println("Lista articoli cancellati(rimossi):\n");
 				GestioneListe.stampaCancellati();
 				break;
 			case 15:

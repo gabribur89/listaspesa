@@ -1,5 +1,4 @@
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class ListaSpesaTest {
@@ -39,6 +38,5 @@ public class ListaSpesaTest {
 		int indice = l.cercaPerNome("riso");
 		assertTrue(indice != -1);
 	}
-	
 	
 }

@@ -20,7 +20,7 @@ public class GestioneListeTest {
 		assertTrue(GestioneListe.dimensioneLista()==0);
 	}
 	
-	/*
+	
 	@Test
 	public void testCategoria(){
 		GestioneListe.aggiungiCategoria("bagno");
@@ -28,14 +28,13 @@ public class GestioneListeTest {
 		GestioneListe.eliminaCategoria("bagno");
 		assertTrue(GestioneListe.dimensioneCategoria()==0);
 	}
-	*/
 	
 	@Test
 	public void testAggiungiArticolo(){
 		Articolo a = new Articolo();
 		GestioneListe.creaLista("lista a");
-		GestioneListe.aggiungiArticolo("lista a", 10, a);
 		assertTrue(GestioneListe.dimensioneLista()==1);
+		GestioneListe.aggiungiArticolo("lista a", 10, a);
 		assertTrue(GestioneListe.getListaSpesa("lista a").dimensione()==1);
 
 	}
@@ -51,11 +50,11 @@ public class GestioneListeTest {
 		assertTrue(GestioneListe.dimensioneLista()==1);
 
 		GestioneListe.aggiungiArticolo("lista a", 10, a);
-		//System.out.println(GestioneListe.getListaSpesa("lista a").dimensione());
+		System.out.println(GestioneListe.getListaSpesa("lista a").dimensione());
 		assertTrue(GestioneListe.getListaSpesa("lista a").dimensione() == 1); 
 		
 		GestioneListe.rimuoviArticolo("lista a", "foo");
-		//System.out.println(GestioneListe.getListaSpesa("lista a").dimensione());
+		System.out.println(GestioneListe.getListaSpesa("lista a").dimensione());
 		assertTrue(GestioneListe.getListaSpesa("lista a").dimensione() == 0);
 		
 		assertTrue(GestioneListe.dimensioneCancellati() == 1);

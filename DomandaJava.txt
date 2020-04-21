@@ -1,0 +1,17 @@
+cosa posso fare omettendo <Iterable> di Articolo?
+
+Non posso iterare sulla lista della spesa
+
+occorre fare metodi che iterano sulla lista
+
+ListaSpesa lista = new ListaSpesa();
+
+ArrayList<String> arrayStringhe = new ArrayList<String>();
+
+for(String s: arrayStringhe){
+stampo s
+}
+
+for(Articolo a: lista){
+stampo a
+}
