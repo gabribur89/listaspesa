@@ -11,22 +11,22 @@ public class MainClass {
 		}
 		System.out.println("\n\n GESTIONE LISTE DELLA SPESA");
 		System.out.println("\n\n");
-		System.out.println("1 - Crea una lista");
+		System.out.println("1 - Crea una Lista");
 		System.out.println("2 - Crea una categoria");
 		System.out.println("3 - Modifica una categoria");
 		System.out.println("4 - Elimina una categoria");
 		System.out.println("5 - Leggi lista da file");
 		System.out.println("6 - Scrivi lista su file");
 		System.out.println("7 - Ordina elementi lista per nome articolo");
-		System.out.println("8 - Inserisci un articolo in una lista (con categoria e quantita')");
-		System.out.println("9 - Cerca un articolo nelle due liste");
-		System.out.println("10 - Rimuovi un articolo (lo mette nella lista dei rimossi)");
-		System.out.println("11 - Ripristina un articolo dalla lista dei rimossi");
+		System.out.println("8 - Inserisci un articolo in una lista(con categoria e quantita')");
+		System.out.println("9 - Cerca un articolo nelle due liste. Lista e Lista Rimossi");
+		System.out.println("10 - Rimuovi un articolo dalla Lista(lo mette nella Lista Rimossi)");
+		System.out.println("11 - Ripristina un articolo dalla Lista Rimossi(lo rimette nella Lista)");
 		System.out.println("12 - Modifica categoria di un articolo");
 		System.out.println("13 - Modifica quantita' di un articolo");
-		System.out.println("14 - Stampa lista rimossi");
-		System.out.println("15 - Svuota lista rimossi");
-		System.out.println("16 - Stampa liste");
+		System.out.println("14 - Stampa Lista Rimossi");
+		System.out.println("15 - Svuota Lista Rimossi");
+		System.out.println("16 - Stampa Liste");
 		System.out.println("0 - Esci ");
 		System.out.println("\nInserisci un comando: ");
 		System.out.println("\n\n\n");
@@ -43,7 +43,7 @@ public class MainClass {
 		boolean esistente = false;
 		GestioneListe liste = new GestioneListe();
 		ListaSpesa li = new ListaSpesa();
-		Articolo a = new Articolo();
+		//Articolo a = new Articolo();
 		
 		do{
 			MainClass.stampaMenu(esistente);
@@ -144,7 +144,7 @@ public class MainClass {
 				System.out.println("Scrivi il nome di una delle Categorie");
 				String nuovacategoria = Input.readString();
 				if(!GestioneListe.categoriaValida(nuovacategoria)) {
-					System.out.println("errore, categoria non valida");
+					System.out.println("errore, categoria non valida. Non esiste o non sono state create");
 					break;
 				}
 				art.setCategoria(nuovacategoria);
@@ -231,8 +231,10 @@ public class MainClass {
 				break;
 			case 16:	
 				System.out.print(liste);
+				break;
 			case 0: //esci
 				System.out.println("\n ti saluto! Alla prossima! ");
+				break;
 			default:
 				break;
 			}
