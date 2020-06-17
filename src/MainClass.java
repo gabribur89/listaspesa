@@ -80,12 +80,21 @@ public class MainClass {
 					System.out.println("Input non consentito");
 					break;
 				}
-				
 			case 2:
+				try {
 				System.out.print("Inserisci il nome della categoria!");
 				String cat = Input.readString();
+				if (li.cercaPerNome(cat) != -1)
+				{
+					System.out.println("Categoria gia' esistente, inserimento non avvenuto");
+					break;
+				}
 				GestioneListe.aggiungiCategoria(cat);
 				break;
+				}catch (NullPointerException e) {
+					System.out.println("Input non consentito");
+					break;
+				}
 			case 3:
 				System.out.print("Inserisci il nome della categoria da modificare!");
 				String modifica = Input.readString();
