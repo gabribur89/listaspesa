@@ -146,6 +146,9 @@ public class MainClass {
 				Articolo art = new Articolo();
 				System.out.println("Nome della lista");
 				String nomelista = Input.readString();
+				if(!GestioneListe.esisteLista(nomelista)) {
+					GestioneListe.creaLista(nomelista);
+				}
 				System.out.println("Nome dell'articolo");
 				art.setNome(Input.readString());
 				System.out.println("Lista delle categorie");

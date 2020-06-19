@@ -36,6 +36,10 @@ public class GestioneListe {
 		}
 	}
 	
+	public static boolean esisteLista(String nomeLista) {
+		return listeSpesa.containsKey(nomeLista);
+	}
+	
 	 // 2) Creare una categoria
 	
 	public static void aggiungiCategoria(String s){
