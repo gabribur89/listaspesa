@@ -37,13 +37,32 @@ public class GestioneListe {
 	}
 	
 	public static boolean esisteLista(String nomeLista) {
-		return listeSpesa.containsKey(nomeLista);
+		if(listeSpesa.containsKey(nomeLista))
+		{
+			return true;
+		}
+		return false;
 	}
 	
-	 // 2) Creare una categoria
+	public static boolean esisteElementoLista() {
+		if(!listeSpesa.isEmpty())
+		{
+			return true;
+		}
+		return false;
+	}
 	
+	// 2) Creare una categoria
 	public static void aggiungiCategoria(String s){
-		categorie.add(s);
+			categorie.add(s);
+	}
+	
+	public static boolean esisteCategoria(String nomeCat) {
+		if(categorie.contains(nomeCat))
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	// eliminazione categoria
@@ -218,6 +237,14 @@ public class GestioneListe {
 		    // metto l'articolo nella lista
 			listeSpesa.get(nomeLista).aggiungi(oggettoArt);
 			
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean esistonoCancellati() {
+		if(cancellati.dimensione()>0)
+		{
 			return true;
 		}
 		return false;
