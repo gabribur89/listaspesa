@@ -180,11 +180,18 @@ public class MainClass {
 				try {
 					System.out.println("Nome lista da salvare su file");
 					String nomelista = Input.readString();
-					GestioneListe.scrivisufile(nomelista);
+					if(GestioneListe.esisteLista(nomelista))
+					{
+						GestioneListe.scrivisufile(nomelista);
+						System.out.println("File salvato correttamente");
+					}
+					else
+					{
+						System.out.println("Guarda che non esiste una lista con questo nome...");
+					}
 				}catch (Exception e) {
 					System.out.println("Errore nel salvataggio su file");
 				}
-				System.out.println("File salvato correttamente");
 				break;
 			case 8://ordinamento
 				try{
