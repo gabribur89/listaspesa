@@ -75,6 +75,15 @@ public class GestioneListe {
 		return categorie.size();
 	}
 	
+	//se vi sono categorie, ok
+	public static boolean elemCategoria(){
+		if(categorie.size()>=0)
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	//modifica categoria
 	public static void modificaCategoria(String vecchia, String nuova){
 		categorie.remove(vecchia);

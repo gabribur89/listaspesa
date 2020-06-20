@@ -12,21 +12,22 @@ public class MainClass {
 		System.out.println("\n\n GESTIONE LISTE DELLA SPESA");
 		System.out.println("\n\n");
 		System.out.println("1 - Crea una Lista");
-		System.out.println("2 - Crea una categoria");
-		System.out.println("3 - Modifica una categoria");
-		System.out.println("4 - Elimina una categoria");
-		System.out.println("5 - Leggi lista da file");
-		System.out.println("6 - Scrivi lista su file");
-		System.out.println("7 - Ordina elementi lista per nome articolo");
-		System.out.println("8 - Inserisci un articolo in una lista(con categoria e quantita')");
-		System.out.println("9 - Cerca un articolo nelle due liste. Lista e Lista Rimossi");
-		System.out.println("10 - Rimuovi un articolo dalla Lista(lo mette nella Lista Rimossi)");
-		System.out.println("11 - Ripristina un articolo dalla Lista Rimossi(lo rimette nella Lista)");
-		System.out.println("12 - Modifica categoria di un articolo");
-		System.out.println("13 - Modifica quantita' di un articolo");
-		System.out.println("14 - Stampa Lista Rimossi");
-		System.out.println("15 - Svuota Lista Rimossi");
-		System.out.println("16 - Stampa Liste");
+		System.out.println("2 - Crea una Categoria");
+		System.out.println("3 - Vedi le Categorie presenti");
+		System.out.println("4 - Modifica una Categoria");
+		System.out.println("5 - Elimina una Categoria");
+		System.out.println("6 - Leggi Lista da file");
+		System.out.println("7 - Scrivi Lista su file");
+		System.out.println("8 - Ordina elementi Lista per nome di un Articolo");
+		System.out.println("9 - Inserisci un Articolo in una Lista(con Categoria e Quantita')");
+		System.out.println("10 - Cerca un Articolo in una Lista");
+		System.out.println("11 - Rimuovi un Articolo dalla Lista(lo mette nella Lista Rimossi - o 'Cestino')");
+		System.out.println("12 - Ripristina un Articolo dalla Lista Rimossi - o 'Cestino - (lo rimette nella Lista)");
+		System.out.println("13 - Modifica Categoria di un Articolo");
+		System.out.println("14 - Modifica Quantita' di un Articolo");
+		System.out.println("15 - Stampa Lista Rimossi - o 'Cestino'");
+		System.out.println("16 - Svuota Lista Rimossi - o 'Cestino'");
+		System.out.println("17 - Stampa le Liste create");
 		System.out.println("0 - Esci ");
 		System.out.println("\nInserisci un comando: ");
 		System.out.println("\n\n\n");
@@ -52,9 +53,9 @@ public class MainClass {
 			try { 
 				scelta=Input.readInt();
 				System.out.println(scelta);
-				if((scelta<0) || (scelta>16))
+				if((scelta<0) || (scelta>18))
 				{
-					throw new SceltaSbagliata("Devi inserire un numero tra 0 e 9!");
+					throw new SceltaSbagliata("Devi inserire un numero tra 0 e 18!");
 				}
 				
 			} catch (NumberFormatException e){
@@ -62,12 +63,8 @@ public class MainClass {
 				  break;
 			} catch(SceltaSbagliata e){
 				  scelta = 99;
-				  System.out.println("Devi inserire un numero tra 0 e 16!");
-				  break;
-			} catch (NullPointerException e) {
-				System.out.println("Input non consentito");
-				break;
-			};
+				  System.out.println("Devi inserire un numero tra 0 e 18!");
+			}
 			
 			switch(scelta){
 			case 1:
@@ -85,16 +82,16 @@ public class MainClass {
 					}
 				} catch (NullPointerException e) {
 					System.out.println("Input non consentito");
-					break;
 				}
 				break;
 			case 2:
 				try {
 				System.out.print("Inserisci il nome della categoria");
 				String cat = Input.readString();
-				if (!GestioneListe.esisteCategoria(cat))
+				if ((GestioneListe.elemCategoria())&&(!GestioneListe.esisteCategoria(cat)))
 				{
 					GestioneListe.aggiungiCategoria(cat);
+					System.out.println("Categoria " +cat+ " aggiunta con successo!");
 				}
 				else
 				{
@@ -103,10 +100,20 @@ public class MainClass {
 				}
 				}catch (NullPointerException e) {
 					System.out.println("Input non consentito");
-					break;
 				}
 				break;
 			case 3:
+				if(GestioneListe.elemCategoria())
+				{
+					System.out.println("Ecco le Categorie presenti:\n ");
+					System.out.println(GestioneListe.listatoCategorie());
+				}
+				else
+				{
+					System.out.println("Non vi sono categorie....");
+				}
+				break;
+			case 4:
 				try{
 				System.out.print("Inserisci il nome della categoria da modificare:");
 				String modifica = Input.readString();
@@ -114,8 +121,15 @@ public class MainClass {
 				{
 					System.out.println("Inserisci nuova categoria:");
 					String nuova = Input.readString();
-					GestioneListe.modificaCategoria(modifica,nuova);
-					System.out.println("categoria modificata!");
+					if(!GestioneListe.esisteCategoria(nuova))
+					{
+						GestioneListe.modificaCategoria(modifica,nuova);
+						System.out.println("categoria modificata!");
+					}
+					else
+					{
+						System.out.println("Non e' possibile modificare la categoria....");
+					}
 				}
 				else
 				{
@@ -124,11 +138,12 @@ public class MainClass {
 				}
 				}catch (NullPointerException e) {
 					System.out.println("Input non consentito");
-					break;
 				}
 				break;
-			case 4:
+			case 5:
 				try{
+				if(GestioneListe.elemCategoria())
+				{
 				System.out.print("Inserisci il nome della categoria da eliminare!");
 				String cat_elim = Input.readString();
 				if(GestioneListe.esisteCategoria(cat_elim))
@@ -141,12 +156,16 @@ public class MainClass {
 					System.out.println("La categoria inserita non esiste!");
 					break;
 				}
+				}
+				else
+				{
+					System.out.println("Non sono ancora state create delle categorie...");
+				}
 				}catch (NullPointerException e) {
 					System.out.println("Input non consentito");
-					break;
 				}
 				break;
-			case 5:
+			case 6:
 				try {
 					GestioneListe.leggidafile();
 				}catch(InputError e){
@@ -157,7 +176,7 @@ public class MainClass {
 				}
 				System.out.println("Liste caricate correttamente");
 				break;
-			case 6:
+			case 7:
 				try {
 					System.out.println("Nome lista da salvare su file");
 					String nomelista = Input.readString();
@@ -167,7 +186,7 @@ public class MainClass {
 				}
 				System.out.println("File salvato correttamente");
 				break;
-			case 7://ordinamento
+			case 8://ordinamento
 				try{
 				// chiedi il nome della lista
 				System.out.println("Nome lista:\n");
@@ -187,10 +206,9 @@ public class MainClass {
 				}
 				}catch (NullPointerException e) {
 					System.out.println("Input non consentito");
-					break;
 				}
 				break;
-			case 8:
+			case 9:
 				try{
 				Articolo art = new Articolo();
 				System.out.println("Nome della lista");
@@ -198,12 +216,19 @@ public class MainClass {
 				if(GestioneListe.esisteLista(nomelista)){
 					System.out.println("Nome dell'articolo");
 					art.setNome(Input.readString());
-					System.out.println("Lista delle categorie");
-					System.out.println(GestioneListe.listatoCategorie());
+					if((GestioneListe.elemCategoria()))
+					{
+						System.out.println("Lista delle categorie");
+						System.out.println(GestioneListe.listatoCategorie());
+					}
+					else
+					{
+						System.out.println("Lista Categorie Vuota...");
+					}
 					System.out.println("Scrivi il nome di una delle Categorie");
 					String nuovacategoria = Input.readString();
 					if(!GestioneListe.categoriaValida(nuovacategoria)) {
-						System.out.println("errore, categoria non valida. Non esiste o non sono state create");
+						System.out.println("errore, categoria non valida.");
 						break;
 					}
 					art.setCategoria(nuovacategoria);
@@ -212,14 +237,14 @@ public class MainClass {
 				}
 				else
 				{
-					System.out.println("Guarda che non esistono liste con questo nome!");
+					System.out.println("Guarda che non esistono liste con questo nome o deve essere ancora creata!");
 					break;
 				}
 				}catch (NumberFormatException e){
 					System.out.println("Devi inserire solo numeri interi!");
 			    }
 				break;
-			case 9:
+			case 10:
 				try{
 				System.out.print("Nome della lista:\n");
 				String nome_lista = Input.readString();
@@ -245,10 +270,9 @@ public class MainClass {
 				}
 				}catch (NullPointerException e) {
 					System.out.println("Input non consentito");
-					break;
 				}
 				break;
-			case 10:
+			case 11:
 				try{
 				System.out.print("Nome della lista\n");
 				sceltalista = Input.readString();
@@ -271,20 +295,20 @@ public class MainClass {
 					}
 					}catch (NullPointerException e) {
 					System.out.println("Input non consentito");
-					break;
 				}
 				break;
-			case 11:
+			case 12:
 				try{
-				System.out.println("Inserisci il nome della lista:\n");
+				System.out.println("Inserisci il nome della Lista dove vuoi inserire l'articolo:\n");
 				String nomelista1 = Input.readString();
 				if(GestioneListe.esisteLista(nomelista1))
 				{
-					System.out.println("Inserisci nome articolo da ripristinare nella lista della spesa:\n");
+					System.out.println("Inserisci nome articolo da ripristinare nella Lista data in input:\n");
 					String nome_art = Input.readString();
 				if(GestioneListe.cercaArticolo(nomelista1, nome_art)!=-1)
 				{
 					GestioneListe.ripristinaCancellato(nomelista1, nome_art);
+					System.out.println("Articolo ripristinato nella Lista!");
 				}
 				else{
 					System.out.println("Nessun articolo con questo nome...");
@@ -296,10 +320,9 @@ public class MainClass {
 				}
 				}catch (NullPointerException e) {
 				 System.out.println("Input non consentito");
-				 break;
 				}
 				break;
-			case 12:
+			case 13:
 				try {
 					System.out.println(liste.toString());
 					System.out.println("Inserisci Nome lista");
@@ -311,8 +334,8 @@ public class MainClass {
 					String articoloscelto = Input.readString();
 					if(GestioneListe.cercaArticolo(sceltalista, articoloscelto)!=-1)
 					{
-					System.out.println("Lista delle categorie\n======================");
-					System.out.println(GestioneListe.listatoCategorie());
+						System.out.println("Lista delle categorie\n======================");
+						System.out.println(GestioneListe.listatoCategorie());
 					}
 					else
 					{
@@ -342,30 +365,53 @@ public class MainClass {
 					}
 				} catch (NullPointerException e) {
 					System.out.println("Input non consentito");
-					break;
 				}
-			case 13:
+			case 14:
 				try{
 					System.out.println(liste.toString());
 					System.out.println("Inserisci Nome lista");
 					sceltalista = Input.readString();
+					if(GestioneListe.esisteLista(sceltalista))
+					{
 					System.out.println(GestioneListe.getListaSpesa(sceltalista).toString());
 					System.out.println("Inserisci Nome articolo");
 					String art_scelto = Input.readString();
-					System.out.println("inserisci nuova quantita");
-					int nuovaqta = Input.readInt();
-					ListaSpesa lista_o = GestioneListe.getListaSpesa(sceltalista);
-					int ind_articolo = lista_o.cercaPerNome(art_scelto);
-					lista_o.modificaQtaArticolo(ind_articolo, nuovaqta);
+						if(GestioneListe.cercaArticolo(sceltalista, art_scelto)!=-1)
+						{
+							System.out.println("inserisci nuova quantita");
+							int nuovaqta = Input.readInt();
+							System.out.println("Quantita' articolo aggiornata correttamente!\n ");
+							System.out.println("la Lista aggiornata e': \n ");
+							ListaSpesa lista_o = GestioneListe.getListaSpesa(sceltalista);
+							int ind_articolo = lista_o.cercaPerNome(art_scelto);
+							lista_o.modificaQtaArticolo(ind_articolo, nuovaqta);
+						}
+						else
+						{
+							System.out.println("Non ho trovato nessun articolo che corrisponda....");
+						}
+					}
+					else
+					{
+						System.out.println("Nessuna lista che abbia questo nome....");
+						break;
+					}
 				}catch (NumberFormatException e){
 					System.out.println("Devi inserire solo numeri interi!");
 			    }
 				break;
-			case 14:
-				System.out.println("Lista articoli cancellati(rimossi):\n");
-				GestioneListe.stampaCancellati();
-				break;
 			case 15:
+				if(GestioneListe.esistonoCancellati())
+				{
+					System.out.println("Lista articoli cancellati(rimossi):\n");
+					GestioneListe.stampaCancellati();
+				}
+				else
+				{
+					System.out.println("Non esistono elementi nella Lista Rimossi");
+				}
+				break;
+			case 16:
 				if(GestioneListe.esistonoCancellati())
 				{
 					GestioneListe.svuotaCancellati();
@@ -377,7 +423,7 @@ public class MainClass {
 					break;
 				}
 				break;
-			case 16:
+			case 17:
 				if(GestioneListe.esisteElementoLista())
 				{
 					System.out.print(liste);

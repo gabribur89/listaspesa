@@ -2,6 +2,12 @@ import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.Test;
+
+import eccezioni.InputError;
+import eccezioni.NumeroCampiException;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GestioneListeTest {
@@ -32,10 +38,10 @@ public class GestioneListeTest {
 	@Test
 	public void testAggiungiArticolo(){
 		Articolo a = new Articolo();
-		GestioneListe.creaLista("lista a");
-		assertTrue(GestioneListe.dimensioneLista()==1);
-		GestioneListe.aggiungiArticolo("lista a", 10, a);
-		assertTrue(GestioneListe.getListaSpesa("lista a").dimensione()==1);
+		GestioneListe.creaLista("lista");
+		assertTrue(GestioneListe.dimensioneLista()!=0);
+		GestioneListe.aggiungiArticolo("lista", 10, a);
+		assertTrue(GestioneListe.getListaSpesa("lista a").dimensione()!=0);
 
 	}
 	
@@ -106,5 +112,30 @@ public class GestioneListeTest {
 		
 	}
 	
+	@Test
+	public void testEsisteLista(){
+		GestioneListe.creaLista("prova");
+		assertTrue(GestioneListe.esisteLista("prova"));
+	}
+	
+	@Test
+	public void testEsisteElementoLista(){
+		GestioneListe.creaLista("prova");
+		assertTrue(GestioneListe.esisteElementoLista());
+		GestioneListe.creaLista(null);
+		assertTrue(GestioneListe.esisteElementoLista());
+	}
+	
+	@Test
+	public void testAggiungiCategoria(){
+		GestioneListe.aggiungiCategoria("carne");
+		assertTrue(GestioneListe.dimensioneCategoria()==1);
+	}
+	
+	@Test
+	public void testEsisteCategoria(){
+		GestioneListe.aggiungiCategoria("pesce");
+		assertTrue(GestioneListe.esisteCategoria("pesce"));
+	}
 	
 }
