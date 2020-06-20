@@ -1,7 +1,14 @@
 import eccezioni.InputError;
 import eccezioni.SceltaSbagliata;
 import jbook.util.Input;
-
+/**
+* Progetto Programmazione Oggetti A.A. 2019/2020
+* Universita' del Piemonte Orientale - Alessandria
+*
+* file MainClass.java
+*
+* @author  Buratto Gabriele - 10025213
+*/
 public class MainClass {
 
 	public static void stampaMenu(boolean giaesistente) {

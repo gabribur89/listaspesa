@@ -9,7 +9,14 @@ import eccezioni.NumeroCampiException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+* Progetto Programmazione Oggetti A.A. 2019/2020
+* Universita' del Piemonte Orientale - Alessandria
+*
+* file GestioneListeTest.java
+*
+* @author  Buratto Gabriele - 10025213
+*/
 public class GestioneListeTest {
 
 	@AfterClass

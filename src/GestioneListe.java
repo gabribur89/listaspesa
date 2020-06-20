@@ -10,7 +10,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import eccezioni.InputError;
 import eccezioni.NumeroCampiException;
-
+/**
+* Progetto Programmazione Oggetti A.A. 2019/2020
+* Universita' del Piemonte Orientale - Alessandria
+*
+* file GestioneListe.java
+*
+* @author  Buratto Gabriele - 10025213
+*/
 public class GestioneListe {
 	
 	/*un campo statico listeSpesa con l'associazione fra il 

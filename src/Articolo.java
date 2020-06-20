@@ -1,3 +1,11 @@
+/**
+* Progetto Programmazione Oggetti A.A. 2019/2020
+* Universita' del Piemonte Orientale - Alessandria
+*
+* file Articolo.java
+*
+* @author  Buratto Gabriele - 10025213
+*/
 public class Articolo {
 	
 	protected String nome;

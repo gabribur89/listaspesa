@@ -1,6 +1,13 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
-
+/**
+* Progetto Programmazione Oggetti A.A. 2019/2020
+* Universita' del Piemonte Orientale - Alessandria
+*
+* file ListaSpesaTest.java
+*
+* @author  Buratto Gabriele - 10025213
+*/
 public class ListaSpesaTest {
 
 	@Test
