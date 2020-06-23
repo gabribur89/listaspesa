@@ -25,9 +25,7 @@ public class Articolo {
 		this.qta = qta;
 	}
 		
-	public Articolo() {
-		// TODO Auto-generated constructor stub
-	}
+	public Articolo() {}
 
 	// equals() ridefinito per i campi di Articolo  
     @Override
@@ -49,7 +47,10 @@ public class Articolo {
         return (this.nome == c.nome) && (this.categoria == c.categoria); 
     } 
 	
-    //setter e getter
+    /*
+     * setter e getter
+     */
+    
 	public void setNome(String n){
 		this.nome = n;
 	}
