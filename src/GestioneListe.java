@@ -114,8 +114,12 @@ public class GestioneListe {
 		return categorie.contains(nomecat);
 	}
 	
-	/* 3) Leggere e 4) scrivere una lista su un file (potete scegliere se usare un file di testo 
-	oppure serializzare la classe)*/
+	// legge una o più liste della spesa da un file CSV con questa struttura 
+	// genera una eccezione in caso di errore
+	// es:
+	// 
+	// listascorta,fagioli,5,legumi
+	// listascorta,sapone,2,bagno
 	public static void leggidafile() throws FileNotFoundException, IOException, InputError, NumeroCampiException {
 		try {
 		
@@ -143,14 +147,14 @@ public class GestioneListe {
 		        
 		    }
 		    br.close();
-		    
+		// se il file non viene trovato lancia questa eccezione    
 		}catch(FileNotFoundException e)
 		{
 			throw new InputError("Leggi da file InputError",e);
 		}
 	}
 	
-
+	// Dato il nome della lista ne scrive il contenuto in un file con formato CSV
 	public static void scrivisufile(String nomelista){
 		
 		try {
@@ -164,6 +168,7 @@ public class GestioneListe {
 	    		   +"\n");
 	    	   }
 	           fw.close();
+	       // eccezione sollevata dal FileWriter in caso di problemi con le operazioni su file
 	       } catch (IOException ex) {
 	           System.err.println("Non posso salvarlo, mi dispiace");
 	       }
@@ -217,6 +222,8 @@ public class GestioneListe {
 		return out; 
 	}
 	
+	// cerca un articolo in una determinata lista della spesa e nella lista rimossi
+	// output: l'indice dell'articolo trovato , altrimenti -1 
 	public static int cercaArticolo(String nomelista, String nomeart){
 		
 		//di default

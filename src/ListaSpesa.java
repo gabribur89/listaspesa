@@ -1,12 +1,18 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
+/*
+ * Classe Lista della spesa. implementa l'interfaccia Iterable<>. In questo modo è possile usare gli iteratori direttamente 
+ * per questa classe mentre invece di dover accedere all'attributo lista di tipo ArrayList<Articolo>. In mancanza di 
+ * questo si sarebbe dovuto accedere all'attributo lista per poter iterare sul suo contenuto , ma questo non è possibile 
+ * perché è privato. 
+ */
 public class ListaSpesa implements Iterable<Articolo>{
 
 	//creo la lista 'ufficiosa'
 	private ArrayList<Articolo> lista = new ArrayList<Articolo>();
 
+	// riscrivo la funzione Iterator di Iterable per il mio scopo, cioè iterare sulla lista di articoli
 	@Override
     public Iterator<Articolo> iterator() {
         return lista.iterator();
@@ -86,7 +92,8 @@ public class ListaSpesa implements Iterable<Articolo>{
 	     //return a;
 	}
 	
-	
+   // funzione accessoria usata dalla funzione di ordinamento.
+   // Scambia i valori di due elementi nell'Array dati i loro indici
    public void exchange(ArrayList<Articolo> a, int i, int j) 
      {
      Articolo tmp = a.get(i);
