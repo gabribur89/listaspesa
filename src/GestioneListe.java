@@ -29,7 +29,11 @@ public class GestioneListe {
 	private static ArrayList<String> categorie = new ArrayList<String>();
 	
 	//campo cancellati che rappresenta la lista 'cestino', dei rimossi
-	private static ListaSpesa cancellati = new ListaSpesa();
+	//private static ListaSpesa cancellati = new ListaSpesa();
+	
+	//lista cestino ma come HashMap
+	private static HashMap<String,ListaSpesa> cancellati = new HashMap<String,ListaSpesa>();
+	
 	
 	private static File out = new File("salvato.csv");
 	
@@ -196,9 +200,20 @@ public class GestioneListe {
 		}
 		
 		//ricerca in lista rimossi
-		if(cancellati.cercaPerNome(prefisso) != -1){
+		/*if(cancellati.cercaPerNome(prefisso) != -1){
 			out.add("cancellati");
+		}*/
+		
+		for(HashMap.Entry<String, ListaSpesa> lista : cancellati.entrySet()) 
+		//for(int i=0;i<listeSpesa.size();i++)
+		{
+			// per ogni elemento dell'hashmap prendo la lista ed eseguo il suo metodo cerca()
+			if(lista.getValue().cercaPerNome(prefisso) != -1) {
+				out.add(lista.getKey());
+			}
+			
 		}
+		
 		return out; 
 	}
 	
@@ -216,11 +231,11 @@ public class GestioneListe {
 			}
 		}
 		
-		indice = cancellati.cercaPerNome(nomeart);
+		/*indice = cancellati.cercaPerNome(nomeart);
 		if(indice != -1)
 		{
 			return indice;
-		}
+		}*/
 		
 		return indice;
 		
@@ -235,7 +250,7 @@ public class GestioneListe {
 				return false;
 			
 			Articolo rimosso = listeSpesa.get(nomeLista).elimina(indice);
-			cancellati.aggiungi(rimosso);
+			cancellati.get(nomeLista).aggiungi(rimosso);
 			return true;
 		}
 		return false;
@@ -244,12 +259,12 @@ public class GestioneListe {
 	/* 9) Ripristinare un articolo dalla lista dei rimossi (operazione contraria al
 	   metodo 8) */
 	public static boolean ripristinaCancellato(String nomeLista, String nomearticolo){
-		if(cancellati.dimensione()>0)
+		if(cancellati.size()>0)
 		{
 			// prima ottengo l'indice
-			int trovato = cancellati.cercaPerNome(nomearticolo);
+			int trovato = cancellati.get(nomeLista).cercaPerNome(nomearticolo);
 			// l'indice mi serve per ottenere l'oggetto Articolo in questione
-			Articolo oggettoArt = cancellati.getArticolo(trovato);
+			Articolo oggettoArt = cancellati.get(nomeLista).getArticolo(trovato);
 		    // metto l'articolo nella lista
 			listeSpesa.get(nomeLista).aggiungi(oggettoArt);
 			
@@ -259,7 +274,7 @@ public class GestioneListe {
 	}
 	
 	public static boolean esistonoCancellati() {
-		if(cancellati.dimensione()>0)
+		if(cancellati.size()>0)
 		{
 			return true;
 		}
@@ -268,7 +283,7 @@ public class GestioneListe {
 	
 	// 12) Svuotare la lista degli articoli rimossi
 	public static void svuotaCancellati(){
-		cancellati.svuota();
+		cancellati.clear();
 	}
 	
 	// metodo che restituisce la dimensione di una lista
@@ -277,16 +292,16 @@ public class GestioneListe {
 	}
 
 	public static int dimensioneCancellati(){
-		return cancellati.dimensione();
+		return cancellati.size();
 	}
 	
 	public static void svuotaliste() {
 		listeSpesa.clear();
 	}
 	
-	public static void stampaCancellati(){
+	/*public static void stampaCancellati(){
 		cancellati.stampa();
-	}
+	}*/
 	
 	// metodo che cancella una lista 
 	public static boolean cancellaLista(String nomeLista) {
@@ -301,14 +316,18 @@ public class GestioneListe {
 	public static ListaSpesa getListaSpesa(String nomeLista){
 		return listeSpesa.get(nomeLista);
 	}
-
-	// metodo toString per stampare le liste  
+	
+	// metodo toString per stampare le liste della spesa o cancellati 
 	@Override
 	public String toString() {
 		String out = new String(); 
 		
 		System.out.println("Liste: \n");
 		for(HashMap.Entry<String, ListaSpesa> entry : listeSpesa.entrySet()) {
+		    out += "Lista: " + entry.getKey().toString() + "\n\n" + entry.getValue().toString() + "\n\n";
+		}
+		
+		for(HashMap.Entry<String, ListaSpesa> entry : cancellati.entrySet()) {
 		    out += "Lista: " + entry.getKey().toString() + "\n\n" + entry.getValue().toString() + "\n\n";
 		}
 

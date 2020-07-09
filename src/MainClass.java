@@ -50,6 +50,7 @@ public class MainClass {
 		// determina se e' gia' stato prodotto il menu o no
 		boolean esistente = false;
 		GestioneListe liste = new GestioneListe();
+		GestioneListe canc = new GestioneListe();
 		ListaSpesa li = new ListaSpesa();
 		//Articolo a = new Articolo();
 		
@@ -418,7 +419,7 @@ public class MainClass {
 				if(GestioneListe.esistonoCancellati())
 				{
 					System.out.println("Lista articoli cancellati(rimossi):\n");
-					GestioneListe.stampaCancellati();
+					System.out.println(canc);
 				}
 				else
 				{
