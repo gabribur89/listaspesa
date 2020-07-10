@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import eccezioni.InputError;
 import eccezioni.NumeroCampiException;
+
 /**
 * Progetto Programmazione Oggetti A.A. 2019/2020
 * Universita' del Piemonte Orientale - Alessandria
@@ -120,10 +121,11 @@ public class GestioneListe {
 	// 
 	// listascorta,fagioli,5,legumi
 	// listascorta,sapone,2,bagno
-	public static void leggidafile() throws FileNotFoundException, IOException, InputError, NumeroCampiException {
+	public static void leggidafile(String filename) throws FileNotFoundException, IOException, InputError, NumeroCampiException {
 		try {
 		
-			BufferedReader br = new BufferedReader(new FileReader("leggimi.csv")); 
+			//BufferedReader br = new BufferedReader(new FileReader("leggimi.csv"));
+			BufferedReader br = new BufferedReader(new FileReader(filename)); 
 		    //StringBuilder sb = new StringBuilder();
 		    String line = br.readLine();
 

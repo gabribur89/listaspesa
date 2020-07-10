@@ -175,7 +175,9 @@ public class MainClass {
 				break;
 			case 6:
 				try {
-					GestioneListe.leggidafile();
+					System.out.println("Inserisci il nome della lista(nome del file) da leggere:");
+					String nomefile = Input.readString();
+					GestioneListe.leggidafile(nomefile);
 				}catch(InputError e){
 					System.out.println("Non ho trovato il file....");
 				}
