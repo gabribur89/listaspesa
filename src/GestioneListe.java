@@ -35,8 +35,9 @@ public class GestioneListe {
 	//lista cestino ma come HashMap
 	private static HashMap<String,ListaSpesa> cancellati = new HashMap<String,ListaSpesa>();
 	
-	
+	/*file da salvare
 	private static File out = new File("salvato.csv");
+	*/
 	
 	// 1) Creare una lista dandole un nome
 	public static void creaLista(String nomeLista){
@@ -159,6 +160,8 @@ public class GestioneListe {
 	// Dato il nome della lista ne scrive il contenuto in un file con formato CSV
 	public static void scrivisufile(String nomelista){
 		
+		File out = new File(nomelista);
+		
 		try {
 	           FileWriter fw = new FileWriter(out,true);
 	           //fw.write(date+" : "+s);
@@ -166,7 +169,7 @@ public class GestioneListe {
 	           Iterator<Articolo> iter = l.iterator(); //metodo restituente iteratore per uso cicli
 	    	   while (iter.hasNext()){
 	    		   Articolo a = iter.next();
-	    		   fw.write("Lista: " + nomelista +" ," + "Nome Articolo: " + a.getNome() + "," + "Nome Categoria: " + a.getCategoria() + "," + "Quantita': " + a.getQta()+"," 
+	    		   fw.write("Lista: " + nomelista +"," + "Nome Articolo: " + a.getNome() + "," + "Nome Categoria: " + a.getCategoria() + "," + "Quantita': " + a.getQta()+"," 
 	    		   +"\n");
 	    	   }
 	           fw.close();
@@ -240,7 +243,7 @@ public class GestioneListe {
 			}
 		}
 		
-		/*indice = cancellati.cercaPerNome(nomeart);
+		/*indice = cancellati.get(nomelista).cercaPerNome(nomeart);
 		if(indice != -1)
 		{
 			return indice;

@@ -82,6 +82,7 @@ public class MainClass {
 					if(!GestioneListe.esisteLista(sceltalista))
 					{
 						GestioneListe.creaLista(sceltalista);
+						System.out.println("Lista "+sceltalista+" creata correttamente!");
 					}
 					else
 					{
@@ -175,7 +176,7 @@ public class MainClass {
 				break;
 			case 6:
 				try {
-					System.out.println("Inserisci il nome della lista(nome del file) da leggere:");
+					System.out.println("Inserisci il nome della lista(file) da leggere:");
 					String nomefile = Input.readString();
 					GestioneListe.leggidafile(nomefile);
 				}catch(InputError e){
@@ -188,12 +189,12 @@ public class MainClass {
 				break;
 			case 7:
 				try {
-					System.out.println("Nome lista da salvare su file");
+					System.out.println("Nome lista da salvare come file: ");
 					String nomelista = Input.readString();
 					if(GestioneListe.esisteLista(nomelista))
 					{
 						GestioneListe.scrivisufile(nomelista);
-						System.out.println("File salvato correttamente");
+						System.out.println("Lista con nome: " +nomelista+ " salvata come file!");
 					}
 					else
 					{
@@ -251,6 +252,7 @@ public class MainClass {
 					art.setCategoria(nuovacategoria);
 					System.out.println("quantita");
 					GestioneListe.aggiungiArticolo(nomelista, Input.readInt(), art);
+					System.out.println("articolo inserito correttamente nella lista "+nomelista+"!!!");
 				}
 				else
 				{
@@ -263,6 +265,8 @@ public class MainClass {
 				break;
 			case 10:
 				try{
+				if(GestioneListe.esisteElementoLista())
+				{
 				System.out.print("Nome della lista:\n");
 				String nome_lista = Input.readString();
 				if(GestioneListe.esisteLista(nome_lista))
@@ -285,12 +289,20 @@ public class MainClass {
 				{
 					System.out.println("Nessuna lista con questo nome....");
 				}
+				}
+				else
+				{
+					System.out.println("Per il momento non esistono Liste.");
+					break;
+				}
 				}catch (NullPointerException e) {
 					System.out.println("Input non consentito");
 				}
 				break;
 			case 11:
 				try{
+				if(GestioneListe.esisteElementoLista())
+				{
 				System.out.print("Nome della lista\n");
 				sceltalista = Input.readString();
 				if(GestioneListe.esisteLista(sceltalista))
@@ -310,12 +322,20 @@ public class MainClass {
 				else{
 						System.out.println("Nessuna lista trovata con questo nome...");
 					}
+				}
+				else
+				{
+					System.out.println("Per il momento non esistono Liste.");
+					break;
+				}
 					}catch (NullPointerException e) {
 					System.out.println("Input non consentito");
 				}
 				break;
 			case 12:
 				try{
+				if(GestioneListe.esisteElementoLista())
+				{
 				System.out.println("Inserisci il nome della Lista dove vuoi inserire l'articolo:\n");
 				String nomelista1 = Input.readString();
 				if(GestioneListe.esisteLista(nomelista1))
@@ -335,12 +355,20 @@ public class MainClass {
 				{
 					System.out.println("Nessuna lista con questo nome...");
 				}
+				}
+				else
+				{
+					System.out.println("Per il momento non esistono Liste.");
+					break;
+				}
 				}catch (NullPointerException e) {
 				 System.out.println("Input non consentito");
 				}
 				break;
 			case 13:
 				try {
+					if(GestioneListe.esisteElementoLista())
+					{
 					System.out.println(liste.toString());
 					System.out.println("Inserisci Nome lista");
 					sceltalista = Input.readString();
@@ -380,11 +408,19 @@ public class MainClass {
 						System.out.println("Lista non trovata. Riprovare.");
 						break;
 					}
+					}
+					else
+					{
+						System.out.println("Per il momento non esistono Liste.");
+						break;
+					}
 				} catch (NullPointerException e) {
 					System.out.println("Input non consentito");
 				}
 			case 14:
 				try{
+					if(GestioneListe.esisteElementoLista())
+					{
 					System.out.println(liste.toString());
 					System.out.println("Inserisci Nome lista");
 					sceltalista = Input.readString();
@@ -411,6 +447,12 @@ public class MainClass {
 					else
 					{
 						System.out.println("Nessuna lista che abbia questo nome....");
+						break;
+					}
+					}
+					else
+					{
+						System.out.println("Per il momento non esistono Liste.");
 						break;
 					}
 				}catch (NumberFormatException e){
