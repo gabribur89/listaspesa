@@ -67,8 +67,8 @@ public class MainClass {
 				}
 				
 			} catch (NumberFormatException e){
+				  scelta = 99;
 				  System.out.print("Devi inserire solo numeri interi!");
-				  break;
 			} catch(SceltaSbagliata e){
 				  scelta = 99;
 				  System.out.println("Devi inserire un numero tra 0 e 18!");
