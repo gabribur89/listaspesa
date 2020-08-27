@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+
 import eccezioni.InputError;
 import eccezioni.NumeroCampiException;
 
@@ -116,7 +118,7 @@ public class GestioneListe {
 		return categorie.contains(nomecat);
 	}
 	
-	// legge una o più liste della spesa da un file CSV con questa struttura 
+	// legge una o piu' liste della spesa da un file CSV con questa struttura 
 	// genera una eccezione in caso di errore
 	// es:
 	// 
@@ -157,20 +159,18 @@ public class GestioneListe {
 		}
 	}
 	
-	// Dato il nome della lista ne scrive il contenuto in un file con formato CSV
+	// Dato il nome della lista ne scrive il contenuto in un file
 	public static void scrivisufile(String nomelista){
 		
 		File out = new File(nomelista);
 		
 		try {
 	           FileWriter fw = new FileWriter(out,true);
-	           //fw.write(date+" : "+s);
 	           ListaSpesa l = listeSpesa.get(nomelista);
 	           Iterator<Articolo> iter = l.iterator(); //metodo restituente iteratore per uso cicli
 	    	   while (iter.hasNext()){
 	    		   Articolo a = iter.next();
-	    		   fw.write("Lista: " + nomelista +"," + "Nome Articolo: " + a.getNome() + "," + "Nome Categoria: " + a.getCategoria() + "," + "Quantita': " + a.getQta()+"," 
-	    		   +"\n");
+	    		   fw.write("Lista: " + nomelista +"," + "Nome Articolo: " + a.getNome() + "," + "Nome Categoria: " + a.getCategoria() + "," + "Quantita': " + a.getQta()+"\n");
 	    	   }
 	           fw.close();
 	       // eccezione sollevata dal FileWriter in caso di problemi con le operazioni su file
