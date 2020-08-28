@@ -127,7 +127,7 @@ public class GestioneListe {
 	public static void leggidafile(String filename) throws FileNotFoundException, IOException, InputError, NumeroCampiException {
 		try {
 		
-			BufferedReader br = new BufferedReader(new FileReader(filename)); 
+			BufferedReader br = new BufferedReader(new FileReader(filename));
 		    String line = br.readLine();
 
 		    while (line != null) {
@@ -136,9 +136,8 @@ public class GestioneListe {
 		    	String nomelista;
 		    	// campi nel file
 		    	String[] campi = line.split(",");
-		    	if(campi.length != 4)
-		    		throw new NumeroCampiException();
-		    		
+		    	if(campi.length == 4)
+		    	{	
 		    	Articolo a = new Articolo();
 		    	nomelista = campi[0];
 		    	if (!listeSpesa.containsKey(nomelista))
@@ -148,6 +147,8 @@ public class GestioneListe {
 		    	a.setCategoria(campi[3]);
 			    aggiungiArticolo(nomelista, Integer.parseInt(campi[2]), a);
 		    	System.out.println(Arrays.toString(campi));
+		    	}
+		    	else throw new NumeroCampiException();
 		        line = br.readLine();
 		        
 		    }
