@@ -126,10 +126,8 @@ public class GestioneListe {
 	// listascorta,sapone,2,bagno
 	public static void leggidafile(String filename) throws FileNotFoundException, IOException, InputError, NumeroCampiException {
 		try {
-			
-			FileReader f = new FileReader(filename);
 		
-			BufferedReader br = new BufferedReader(f);
+			BufferedReader br = new BufferedReader(new FileReader(filename));
 		    String line = br.readLine();
 
 		    while (line != null) {
@@ -173,7 +171,7 @@ public class GestioneListe {
 	           Iterator<Articolo> iter = l.iterator(); //metodo restituente iteratore per uso cicli
 	    	   while (iter.hasNext()){
 	    		   Articolo a = iter.next();
-	    		   fw.write("Lista: " + nomelista +"," + "Nome Articolo: " + a.getNome() + "," + "Nome Categoria: " + a.getCategoria() + "," + "Quantita': " + a.getQta()+"\n");
+	    		   fw.write("Lista: " + nomelista +"," + "Nome Articolo: " + a.getNome() + "," + "Nome Categoria: " + a.getCategoria() + "\n");
 	    	   }
 	           fw.close();
 	       // eccezione sollevata dal FileWriter in caso di problemi con le operazioni su file
