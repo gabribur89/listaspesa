@@ -126,8 +126,10 @@ public class GestioneListe {
 	// listascorta,sapone,2,bagno
 	public static void leggidafile(String filename) throws FileNotFoundException, IOException, InputError, NumeroCampiException {
 		try {
+			
+			FileReader f = new FileReader(filename);
 		
-			BufferedReader br = new BufferedReader(new FileReader(filename));
+			BufferedReader br = new BufferedReader(f);
 		    String line = br.readLine();
 
 		    while (line != null) {

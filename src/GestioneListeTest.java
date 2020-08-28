@@ -145,4 +145,19 @@ public class GestioneListeTest {
 		assertTrue(GestioneListe.esisteCategoria("pesce"));
 	}
 	
+	@Test
+	public void testApriFile1() throws FileNotFoundException, IOException, InputError, NumeroCampiException{
+		System.out.println("FILE LETTO CORRETTAMENTE:");
+		String fileok = "leggimi.csv";
+		GestioneListe.leggidafile(fileok);
+		System.out.println("FINE FILE LETTO CORRETTAMENTE:\n\n");
+	}
+	
+	@Test
+	public void testApriFile2() throws FileNotFoundException, IOException, InputError, NumeroCampiException{
+		System.out.println("FILE CHE NON VA A BUON FINE 1:");
+		String fileno = "bbb";
+		GestioneListe.leggidafile(fileno);
+	}
+	
 }
