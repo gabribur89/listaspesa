@@ -309,6 +309,8 @@ public class MainClass {
 				{
 				System.out.print("Nome dell'articolo\n");
 				String nomear = Input.readString();
+				System.out.print("ci entro\n");
+
 				if(GestioneListe.cercaArticolo(sceltalista, nomear)!=-1)
 				{
 				GestioneListe.rimuoviArticolo(sceltalista, nomear);

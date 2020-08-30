@@ -60,6 +60,7 @@ public class GestioneListeTest {
 		a.setNome("foobar");
 		GestioneListe.creaLista("lista a");
 		assertTrue(GestioneListe.dimensioneCancellati() == 0);
+		// controlla quante liste ci sono
 		assertTrue(GestioneListe.dimensioneLista()==1);
 
 		GestioneListe.aggiungiArticolo("lista a", 10, a);
