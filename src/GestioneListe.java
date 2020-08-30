@@ -171,7 +171,7 @@ public class GestioneListe {
 	           Iterator<Articolo> iter = l.iterator(); //metodo restituente iteratore per uso cicli
 	    	   while (iter.hasNext()){
 	    		   Articolo a = iter.next();
-	    		   fw.write("Lista: " + nomelista +"," + "Nome Articolo: " + a.getNome() + "," + "Nome Categoria: " + a.getCategoria() + "\n");
+	    		   fw.write(nomelista +"," + a.getNome() + "," + Integer.toString(a.getQta()) +"," + a.getCategoria() + "\n");
 	    	   }
 	           fw.close();
 	       // eccezione sollevata dal FileWriter in caso di problemi con le operazioni su file

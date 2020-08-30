@@ -1,5 +1,5 @@
 listascorta,fagioli,5,legumi
 listascorta,sapone,2,bagno
 altralista,tagliaunghie,3,igiene
-Lista: bbb,Nome Articolo: pollo,Nome Categoria: carne,Quantita': 2.0
-Lista: bbb,Nome Articolo: trota,Nome Categoria: pesce,Quantita': 4.0
+Lista: bbb,Nome Articolo: pollo,2,Nome Categoria: carne
+Lista: bbb,Nome Articolo: trota,4,Nome Categoria: pesce

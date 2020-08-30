@@ -71,7 +71,7 @@ public class Articolo {
 		this.qta = q;
 	}
 	
-	public float getQta(){
+	public int getQta(){
 		return this.qta;
 	}
 	
