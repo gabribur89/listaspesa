@@ -277,11 +277,13 @@ public class GestioneListe {
 		{
 			// prima ottengo l'indice
 			int trovato = cancellati.cercaPerNome(nomearticolo);
+			if (trovato == -1)
+				return false;
 			// l'indice mi serve per ottenere l'oggetto Articolo in questione
 			Articolo oggettoArt = cancellati.getArticolo(trovato);
 		    // metto l'articolo nella lista
 			listeSpesa.get(nomeLista).aggiungi(oggettoArt);
-			
+			cancellati.elimina(trovato);
 			return true;
 		}
 		return false;

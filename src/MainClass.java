@@ -344,10 +344,10 @@ public class MainClass {
 				{
 					System.out.println("Inserisci nome articolo da ripristinare nella Lista data in input:\n");
 					String nome_art = Input.readString();
-				if(GestioneListe.cercaArticolo(nomelista1, nome_art)!=-1)
+				if(GestioneListe.cercaArticolo(nomelista1, nome_art)==-1)
 				{
 					GestioneListe.ripristinaCancellato(nomelista1, nome_art);
-					System.out.println("Articolo ripristinato nella Lista!");
+					System.out.println("Articolo ripristinato nella Lista" + nomelista1 +" !");
 				}
 				else{
 					System.out.println("Nessun articolo con questo nome...");
